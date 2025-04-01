@@ -80,16 +80,19 @@ export const LayoutGrid = ({ cards }: { cards: Card[] }) => {
 
 const BlurImage = ({ card }: { card: Card }) => {
   const [loaded, setLoaded] = useState(false);
+  const [error, setError] = useState(false);
+  
   return (
     <Image
-      src={card.thumbnail}
-      //   change image scale 500 to 100
+      src={card.thumbnail || "/profile.svg"}
       height="100"
       width="100"
       onLoad={() => setLoaded(true)}
+      onError={() => setError(true)}
       className={cn(
         "object-cover object-top absolute inset-0 h-full w-full transition duration-200",
-        loaded ? "blur-none" : "blur-md"
+        loaded ? "blur-none" : "blur-md",
+        error ? "hidden" : ""
       )}
       alt="thumbnail"
     />

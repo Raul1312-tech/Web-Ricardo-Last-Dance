@@ -68,24 +68,34 @@ const servicios = [
     id: 4,
     title: "Implementación Tecnológica",
     description: "CRMs personalizados para productividad empresarial",
+    detalle: "Desarrollamos e implementamos soluciones tecnológicas personalizadas que automatizan y optimizan la gestión de la clínica. Nuestros sistemas CRM específicos para el sector dental mejoran la productividad, el seguimiento de pacientes y la gestión comercial.",
+    beneficios: [
+      "Automatización de procesos administrativos y comerciales",
+      "Seguimiento detallado del ciclo de vida del paciente",
+      "Análisis de datos en tiempo real para toma de decisiones",
+      "Integración con sistemas de gestión clínica existentes"
+    ],
+    headline: "Automatiza el 85% de tus procesos con tecnología dental inteligente",
+    color: "#4ADE80",
     icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
       <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" fill="currentColor" fill-opacity="0.1"/>
       <path d="M2 10H22" stroke="currentColor" stroke-width="1.2"/>
       <path d="M10 21.0001L10 10" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M16.5 16.5H13.5V13.5H16.5V16.5Z" fill="currentColor" stroke="currentColor"/>
-      <path d="M6.5 16.5H3.5V13.5H6.5V16.5Z" fill="currentColor" stroke="currentColor"/>
-      <path d="M16.5 7.5H13.5V4.5H16.5V7.5Z" fill="currentColor" stroke="currentColor"/>
-      <path d="M6.5 7.5H3.5V4.5H6.5V7.5Z" fill="currentColor" stroke="currentColor"/>
-      <path d="M20.5 7.5H17.5V4.5H20.5V7.5Z" fill="currentColor" stroke="currentColor"/>
-      <path d="M12.5 7.5H7.5V4.5H12.5V7.5Z" fill="currentColor" stroke="currentColor"/>
-      <path d="M12.5 16.5H7.5V13.5H12.5V16.5Z" fill="currentColor" stroke="currentColor"/>
-      <path d="M20.5 16.5H17.5V13.5H20.5V16.5Z" fill="currentColor" stroke="currentColor"/>
     </svg>`
   },
   {
     id: 5,
     title: "Recursos Humanos",
     description: "Formación, entrenamiento y motivación del equipo",
+    detalle: "Desarrollamos programas de formación y motivación específicos para equipos dentales. Creamos culturas organizativas orientadas a la excelencia, con sistemas de incentivos, evaluación del desempeño y planes de carrera adaptados al sector dental.",
+    beneficios: [
+      "Reducción de la rotación de personal",
+      "Aumento de la productividad por empleado",
+      "Mejora del clima laboral y trabajo en equipo",
+      "Desarrollo de liderazgo en mandos intermedios"
+    ],
+    headline: "Transforma tu equipo en un activo que multiplica tu facturación",
+    color: "#8B5CF6",
     icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
       <circle cx="9" cy="7" r="3" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
       <circle cx="15" cy="9" r="2" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
@@ -281,32 +291,7 @@ const serviciosDetallados = [
       <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" fill="currentColor" fill-opacity="0.1"/>
       <path d="M2 10H22" stroke="currentColor" stroke-width="1.2"/>
       <path d="M10 21.0001L10 10" stroke="currentColor" stroke-width="1.2"/>
-    </svg>`,
-    estadisticas: [
-      { valor: "72%", descripcion: "Reducción de tareas administrativas" },
-      { valor: "56%", descripcion: "Mejora en seguimiento de pacientes" },
-      { valor: "41%", descripcion: "Aumento en productividad" }
-    ],
-    testimonios: [
-      {
-        texto: "La implementación del CRM nos permitió triplicar nuestra capacidad de gestión sin aumentar el personal.",
-        autor: "Dra. Laura González, Clínica Dental Elite"
-      },
-      {
-        texto: "La automatización de citas y recordatorios redujo nuestras cancelaciones en un 68% desde el primer mes.",
-        autor: "Dr. Gabriel Martín, Centro Implantológico Dental"
-      },
-      {
-        texto: "Gracias a la tecnología implementada, nuestras auxiliares ahorran 12 horas semanales en tareas administrativas.",
-        autor: "Dra. Sofía Navarro, Clínica Dental Premium"
-      }
-    ],
-    roadmap: [
-      { title: "Análisis de necesidades tecnológicas", description: "Evaluamos tu infraestructura actual y definimos objetivos de digitalización." },
-      { title: "Implementación de soluciones", description: "Instalamos y configuramos sistemas CRM, agendas digitales y automatizaciones." },
-      { title: "Entrenamiento y optimización", description: "Capacitamos a tu equipo y refinamos los sistemas para maximizar resultados." }
-    ],
-    color: "#3B82F6"
+    </svg>`
   },
   {
     id: 5,
@@ -325,32 +310,16 @@ const serviciosDetallados = [
       <circle cx="15" cy="9" r="2" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
       <circle cx="19" cy="11" r="1.5" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
       <circle cx="5" cy="9" r="2" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-    </svg>`,
-    estadisticas: [
-      { valor: "68%", descripcion: "Reducción en rotación de personal" },
-      { valor: "47%", descripcion: "Aumento en productividad por empleado" },
-      { valor: "92%", descripcion: "Satisfacción del equipo" }
-    ],
-    testimonios: [
-      {
-        texto: "Pasamos de una rotación del 40% anual a solo un 8% y la productividad del equipo aumentó un 62%.",
-        autor: "Dr. Carlos Ruiz, Clínicas Dentales Innovación"
-      },
-      {
-        texto: "El programa de incentivos transformó por completo la motivación del equipo. Ahora todos reman en la misma dirección.",
-        autor: "Dra. Patricia Vega, Clínica Dental Integral"
-      },
-      {
-        texto: "Las formaciones en liderazgo para mandos intermedios han sido clave para escalar nuestro negocio a tres clínicas.",
-        autor: "Dr. Javier Méndez, Grupo Dental Avanzado"
-      }
-    ],
-    roadmap: [
-      { title: "Diagnóstico de cultura y equipo", description: "Evaluamos el clima laboral, las competencias y necesidades del personal." },
-      { title: "Diseño de planes de incentivos", description: "Creamos sistemas de remuneración variable vinculados a objetivos claros." },
-      { title: "Programas de desarrollo y liderazgo", description: "Implementamos formaciones específicas para cada rol en la clínica." }
-    ],
-    color: "#F59E0B"
+      <path d="M5.75737 13.1213C5.07534 13.8033 4.39331 14.4854 4.39331 15.1674C4.39331 15.8495 4.39331 16.5315 4.93097 16.9605C5.46863 17.3895 6.00629 17.4142 6.8517 17.4142C7.69711 17.4142 8.82383 17.4142 9.5 17.4142" stroke="currentColor" stroke-linecap="round"/>
+      <path d="M12.5 18C12.5 17.1716 13.1716 16.5 14 16.5H16C16.8284 16.5 17.5 17.1716 17.5 18V20H12.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
+      <path d="M17.5 18C17.5 17.1716 18.1716 16.5 19 16.5H20C20.8284 16.5 21.5 17.1716 21.5 18V20H17.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
+      <path d="M7.5 18C7.5 17.1716 8.17157 16.5 9 16.5H11C11.8284 16.5 12.5 17.1716 12.5 18V20H7.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
+      <path d="M2.5 18C2.5 17.1716 3.17157 16.5 4 16.5H5C5.82843 16.5 6.5 17.1716 6.5 18V20H2.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
+      <path d="M14 13L14 14.5" stroke="currentColor" stroke-linecap="round"/>
+      <path d="M19 13L19 14.5" stroke="currentColor" stroke-linecap="round"/>
+      <path d="M9 13L9 14.5" stroke="currentColor" stroke-linecap="round"/>
+      <path d="M5 13L5 14.5" stroke="currentColor" stroke-linecap="round"/>
+    </svg>`
   },
   {
     id: 6,
@@ -369,32 +338,7 @@ const serviciosDetallados = [
       <path d="M21 9H3" stroke="currentColor" stroke-linecap="round"/>
       <path d="M6 7H7" stroke="currentColor" stroke-linecap="round"/>
       <path d="M9 7H10" stroke="currentColor" stroke-linecap="round"/>
-    </svg>`,
-    estadisticas: [
-      { valor: "87%", descripcion: "Mejora en toma de decisiones" },
-      { valor: "53%", descripcion: "Aumento en cumplimiento de objetivos" },
-      { valor: "94%", descripcion: "Detección temprana de desviaciones" }
-    ],
-    testimonios: [
-      {
-        texto: "Por fin tenemos total claridad sobre el rendimiento de cada área y podemos anticiparnos a los problemas.",
-        autor: "Dra. Patricia Gómez, Centro Odontológico Avanzado"
-      },
-      {
-        texto: "Los dashboards nos permiten tomar decisiones basadas en datos en tiempo real, lo que ha mejorado nuestra rentabilidad en un 34%.",
-        autor: "Dr. Manuel Herrera, Clínica Dental Tecnológica"
-      },
-      {
-        texto: "El seguimiento detallado nos ha permitido identificar oportunidades de mejora que estaban ocultas durante años.",
-        autor: "Dra. Carmen Sanz, Instituto Dental Científico"
-      }
-    ],
-    roadmap: [
-      { title: "Definición de métricas clave", description: "Identificamos los KPIs más relevantes para tu modelo de negocio." },
-      { title: "Implementación de dashboards", description: "Desarrollamos paneles de control visuales adaptados a tus necesidades." },
-      { title: "Formación en análisis de datos", description: "Capacitamos a tu equipo directivo en el uso estratégico de la información." }
-    ],
-    color: "#6366F1"
+    </svg>`
   },
 ];
 
@@ -467,15 +411,16 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
   };
 
   // Función para abrir el modal
-  const handleOpenModal = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
+  const handleOpenModal = () => {
     setIsModalOpen(true);
   };
 
   // Función para cerrar el modal
   const handleCloseModal = () => {
     setIsModalOpen(false);
+    // Resetear también la posición de la tarjeta para que vuelva a su posición original
+    setIsHovered(false);
+    setRotation({ x: 0, y: 0 });
   };
 
   // Obtener datos detallados del servicio
@@ -484,6 +429,11 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
   };
 
   const servicioDetallado = getServicioDetallado();
+
+  // Obtener el color del servicio o usar un color predeterminado
+  const getServiceColor = () => {
+    return servicioDetallado?.color || brandColors.neonGreen;
+  };
 
   // Patrones gráficos según ID
   const getPatternStyle = () => {
@@ -613,7 +563,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
           >
             <div 
               className="w-full h-full flex items-center justify-center" 
-              style={{ color: brandColors.neonGreen }}
+              style={{ color: getServiceColor() }}
               dangerouslySetInnerHTML={{ __html: icon }} 
             />
           </motion.div>
@@ -633,7 +583,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
               >
                 <div 
                   className="w-full h-full rounded-full" 
-                  style={{ backgroundColor: brandColors.neonGreen, boxShadow: `0 0 5px ${brandColors.neonGreen}` }} 
+                  style={{ backgroundColor: getServiceColor(), boxShadow: `0 0 5px ${getServiceColor()}` }} 
                 />
               </motion.div>
               <motion.div 
@@ -648,7 +598,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
               >
                 <div 
                   className="w-full h-full rounded-full" 
-                  style={{ backgroundColor: brandColors.neonGreen, boxShadow: `0 0 5px ${brandColors.neonGreen}` }} 
+                  style={{ backgroundColor: getServiceColor(), boxShadow: `0 0 5px ${getServiceColor()}` }} 
                 />
               </motion.div>
               <motion.div 
@@ -663,7 +613,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
               >
                 <div 
                   className="w-full h-full rounded-full" 
-                  style={{ backgroundColor: brandColors.neonGreen, boxShadow: `0 0 5px ${brandColors.neonGreen}` }} 
+                  style={{ backgroundColor: getServiceColor(), boxShadow: `0 0 5px ${getServiceColor()}` }} 
                 />
               </motion.div>
             </>
@@ -672,13 +622,14 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
       </div>
     );
   };
-  
+
   return (
     <div 
-      className="h-[450px] w-full perspective"
+      className="h-full w-full perspective cursor-pointer"
       onMouseEnter={handleMouseEnter}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
+      onClick={handleOpenModal}
     >
       <motion.div 
         className={cn(
@@ -728,21 +679,21 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
             <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
             <p className="text-gray-300 text-sm mb-6">{description}</p>
             
-            <button 
+            {/* Indicador visual de clickable */}
+            <div 
               className="text-sm font-medium flex items-center justify-center gap-2 hover:gap-3 transition-all duration-300 mt-auto mx-auto group"
-              style={{ color: brandColors.neonGreen }}
-              onClick={handleOpenModal}
+              style={{ color: getServiceColor() }}
             >
               <span>Descubre más</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </button>
+            </div>
           </div>
         </div>
         
         {/* Barra de color en la parte superior */}
         <div 
           className="absolute top-0 left-0 right-0 h-1.5"
-          style={{ background: brandColors.neonGreen }}
+          style={{ background: getServiceColor() }}
         />
         
         {/* Efecto de brillo */}
@@ -760,12 +711,12 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
           <div
             className="absolute w-6 h-6 rounded-full pointer-events-none z-30"
             style={{
-              background: `radial-gradient(circle, ${brandColors.neonGreen}aa, transparent 70%)`,
+              background: `radial-gradient(circle, ${getServiceColor()}aa, transparent 70%)`,
               left: `${50 + rotation.y * 0.5}%`,
               top: `${50 + rotation.x * -0.5}%`,
               transform: "translate(-50%, -50%)",
               filter: "blur(5px)",
-              boxShadow: `0 0 10px ${brandColors.neonGreen}`,
+              boxShadow: `0 0 10px ${getServiceColor()}`,
             }}
           />
         )}
@@ -780,151 +731,285 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
         >
           {/* Contenido del modal con diseño mejorado */}
           <div className="p-6 overflow-y-auto relative">
-            {/* Elementos gráficos decorativos */}
-            <div className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-10" 
-              style={{ 
-                background: `radial-gradient(circle, ${servicioDetallado?.color}99 0%, transparent 70%)`,
-                filter: "blur(40px)"
-              }}
-            />
-            <div className="absolute bottom-10 left-10 w-32 h-32 rounded-full opacity-10"
-              style={{ 
-                background: `radial-gradient(circle, ${servicioDetallado?.color}99 0%, transparent 70%)`,
-                filter: "blur(30px)"
-              }}
-            />
-            
-            {/* Headline principal persuasivo */}
-            <h2 className="text-2xl md:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
-              {servicioDetallado?.headline}
-            </h2>
-            
-            {/* Descripción detallada */}
-            <p className="text-gray-300 mb-8 text-lg border-l-4 pl-4" style={{ borderColor: servicioDetallado?.color }}>
-              {servicioDetallado?.detalle}
-            </p>
-            
-            {/* Estadísticas en tarjetas */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
-              {servicioDetallado?.estadisticas.map((stat, index) => (
-                <div 
-                  key={index}
-                  className="flex flex-col items-center p-4 rounded-lg border border-white/10 bg-black/50 backdrop-blur-sm"
-                  style={{ boxShadow: `0 0 20px ${servicioDetallado.color}20` }}
-                >
-                  <p className="text-3xl font-bold mb-2" style={{ color: servicioDetallado?.color }}>
-                    {stat.valor}
-                  </p>
-                  <p className="text-gray-300 text-center">
-                    {stat.descripcion}
-                  </p>
-                </div>
-              ))}
-            </div>
-            
-            {/* Sección de beneficios */}
-            <div className="mb-10">
-              <h3 className="text-xl font-bold mb-4 flex items-center text-white">
-                <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
-                    <polyline points="20 6 9 17 4 12"></polyline>
-                  </svg>
-                </span>
-                Beneficios
-              </h3>
-              <ul className="space-y-3 pl-6">
-                {servicioDetallado?.beneficios.map((beneficio, index) => (
-                  <li key={index} className="flex items-start">
-                    <span className="inline-flex items-center justify-center w-6 h-6 mr-2 rounded-full" style={{ background: `${servicioDetallado.color}30` }}>
-                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3" style={{ color: servicioDetallado?.color }}>
+            {servicioDetallado && (
+              <>
+                {/* Elementos gráficos decorativos */}
+                <div className="absolute top-0 right-0 w-40 h-40 rounded-full opacity-10" 
+                  style={{ 
+                    background: `radial-gradient(circle, ${servicioDetallado?.color}99 0%, transparent 70%)`,
+                    filter: "blur(40px)"
+                  }}
+                />
+                <div className="absolute bottom-10 left-10 w-32 h-32 rounded-full opacity-10"
+                  style={{ 
+                    background: `radial-gradient(circle, ${servicioDetallado?.color}99 0%, transparent 70%)`,
+                    filter: "blur(30px)"
+                  }}
+                />
+                
+                {/* Headline principal persuasivo */}
+                <h2 className="text-2xl md:text-3xl font-bold mb-6 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-400">
+                  {servicioDetallado?.headline || `Optimiza tu clínica con ${servicioDetallado?.title}`}
+                </h2>
+                
+                {/* Descripción detallada */}
+                <p className="text-gray-300 mb-8 text-lg border-l-4 pl-4" style={{ borderColor: servicioDetallado?.color }}>
+                  {servicioDetallado?.detalle}
+                </p>
+                
+                {/* Estadísticas en tarjetas */}
+                {servicioDetallado?.estadisticas ? (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                    {servicioDetallado.estadisticas.map((stat, index) => (
+                      <div 
+                        key={index}
+                        className="flex flex-col items-center p-4 rounded-lg border border-white/10 bg-black/50 backdrop-blur-sm"
+                        style={{ boxShadow: `0 0 20px ${servicioDetallado.color}20` }}
+                      >
+                        <p className="text-3xl font-bold mb-2" style={{ color: servicioDetallado?.color }}>
+                          {stat.valor}
+                        </p>
+                        <p className="text-gray-300">{stat.descripcion}</p>
+                      </div>
+                    ))}
+                  </div>
+                ) : (
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-10">
+                    <div className="flex flex-col items-center p-4 rounded-lg border border-white/10 bg-black/50 backdrop-blur-sm"
+                         style={{ boxShadow: `0 0 20px ${servicioDetallado.color}20` }}>
+                      <p className="text-3xl font-bold mb-2" style={{ color: servicioDetallado?.color }}>+45%</p>
+                      <p className="text-gray-300 text-center">Aumento en productividad</p>
+                    </div>
+                    <div className="flex flex-col items-center p-4 rounded-lg border border-white/10 bg-black/50 backdrop-blur-sm"
+                         style={{ boxShadow: `0 0 20px ${servicioDetallado.color}20` }}>
+                      <p className="text-3xl font-bold mb-2" style={{ color: servicioDetallado?.color }}>87%</p>
+                      <p className="text-gray-300 text-center">Satisfacción del equipo</p>
+                    </div>
+                    <div className="flex flex-col items-center p-4 rounded-lg border border-white/10 bg-black/50 backdrop-blur-sm"
+                         style={{ boxShadow: `0 0 20px ${servicioDetallado.color}20` }}>
+                      <p className="text-3xl font-bold mb-2" style={{ color: servicioDetallado?.color }}>3.2x</p>
+                      <p className="text-gray-300 text-center">ROI de la inversión</p>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Sección de beneficios */}
+                <div className="mb-10">
+                  <h3 className="text-xl font-bold mb-4 flex items-center text-white">
+                    <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
                         <polyline points="20 6 9 17 4 12"></polyline>
                       </svg>
                     </span>
-                    <span className="text-gray-300">{beneficio}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            {/* Roadmap simplificado */}
-            <div className="mb-10">
-              <h3 className="text-xl font-bold mb-6 flex items-center text-white">
-                <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
-                  </svg>
-                </span>
-                Nuestro Proceso
-              </h3>
-              
-              <div className="relative pl-12 border-l border-dashed" style={{ borderColor: `${servicioDetallado?.color}50` }}>
-                {servicioDetallado?.roadmap.map((paso, index) => (
-                  <div key={index} className="mb-8 relative">
-                    <div className="absolute -left-6 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: index === 0 ? servicioDetallado?.color : `${servicioDetallado?.color}40` }}>
-                      <span className="text-xs font-bold">{index + 1}</span>
-                    </div>
-                    <div className="pl-4">
-                      <h4 className="text-lg font-bold mb-2" style={{ color: index === 0 ? servicioDetallado?.color : 'white' }}>
-                        {paso.title}
-                      </h4>
-                      <p className="text-gray-300">
-                        {paso.description}
-                      </p>
+                    Beneficios
+                  </h3>
+                  <ul className="space-y-3 pl-6">
+                    {servicioDetallado?.beneficios.map((beneficio, index) => (
+                      <li key={index} className="flex items-start">
+                        <span className="inline-flex items-center justify-center w-6 h-6 mr-2 rounded-full" style={{ background: `${servicioDetallado.color}30` }}>
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-3 h-3" style={{ color: servicioDetallado?.color }}>
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                          </svg>
+                        </span>
+                        <span className="text-gray-300">{beneficio}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                {/* Roadmap simplificado */}
+                {servicioDetallado?.roadmap ? (
+                  <div className="mb-10">
+                    <h3 className="text-xl font-bold mb-6 flex items-center text-white">
+                      <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
+                          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                      </span>
+                      Nuestro Proceso
+                    </h3>
+                    
+                    <div className="relative pl-12 border-l border-dashed" style={{ borderColor: `${servicioDetallado?.color}50` }}>
+                      {servicioDetallado?.roadmap.map((paso, index) => (
+                        <div key={index} className="mb-8 relative">
+                          <div className="absolute -left-6 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: index === 0 ? servicioDetallado?.color : `${servicioDetallado?.color}40` }}>
+                            <span className="text-xs font-bold">{index + 1}</span>
+                          </div>
+                          <div className="pl-6">
+                            <h4 className="text-lg font-bold mb-2" style={{ color: index === 0 ? servicioDetallado?.color : 'white' }}>
+                              {paso.title}
+                            </h4>
+                            <p className="text-gray-300">
+                              {paso.description}
+                            </p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
-                ))}
-              </div>
-            </div>
-            
-            {/* Testimonios con grid para mostrar múltiples testimonios */}
-            {servicioDetallado?.testimonios && (
-              <div className="mb-10">
-                <h3 className="text-xl font-bold mb-6 flex items-center text-white">
-                  <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
-                      <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
-                    </svg>
-                  </span>
-                  Testimonios
-                </h3>
-                
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                  {servicioDetallado.testimonios.map((testimonio, index) => (
-                    <div 
-                      key={index}
-                      className="p-5 rounded-lg border border-white/10 bg-gradient-to-br from-black/80 to-black/40 backdrop-blur-sm"
-                      style={{ boxShadow: `0 4px 20px ${servicioDetallado.color}20` }}
-                    >
-                      <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-3 opacity-50" style={{ color: servicioDetallado?.color }}>
-                        <path d="M10,7L4,7L4,17L10,17L10,12L6,12L10,7Z"></path>
-                        <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
-                      </svg>
-                      <blockquote className="text-gray-300 mb-4 italic text-sm">
-                        "{testimonio.texto}"
-                      </blockquote>
-                      <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
-                        {testimonio.autor}
-                      </p>
+                ) : (
+                  <div className="mb-10">
+                    <h3 className="text-xl font-bold mb-6 flex items-center text-white">
+                      <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
+                          <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                        </svg>
+                      </span>
+                      Nuestro Proceso
+                    </h3>
+                    
+                    <div className="relative pl-12 border-l border-dashed" style={{ borderColor: `${servicioDetallado?.color}50` }}>
+                      <div className="mb-8 relative">
+                        <div className="absolute -left-6 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: servicioDetallado?.color }}>
+                          <span className="text-xs font-bold">1</span>
+                        </div>
+                        <div className="pl-6">
+                          <h4 className="text-lg font-bold mb-2" style={{ color: servicioDetallado?.color }}>
+                            Diagnóstico inicial
+                          </h4>
+                          <p className="text-gray-300">
+                            Analizamos en profundidad la situación actual y necesidades específicas de tu clínica.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="mb-8 relative">
+                        <div className="absolute -left-6 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: `${servicioDetallado?.color}40` }}>
+                          <span className="text-xs font-bold">2</span>
+                        </div>
+                        <div className="pl-6">
+                          <h4 className="text-lg font-bold mb-2 text-white">
+                            Implementación personalizada
+                          </h4>
+                          <p className="text-gray-300">
+                            Desarrollamos e implementamos soluciones adaptadas específicamente a tus necesidades.
+                          </p>
+                        </div>
+                      </div>
+                      
+                      <div className="mb-8 relative">
+                        <div className="absolute -left-6 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: `${servicioDetallado?.color}40` }}>
+                          <span className="text-xs font-bold">3</span>
+                        </div>
+                        <div className="pl-6">
+                          <h4 className="text-lg font-bold mb-2 text-white">
+                            Seguimiento y optimización
+                          </h4>
+                          <p className="text-gray-300">
+                            Monitorizamos resultados y realizamos ajustes continuos para maximizar el rendimiento.
+                          </p>
+                        </div>
+                      </div>
                     </div>
-                  ))}
+                  </div>
+                )}
+                
+                {/* Testimonios con grid para mostrar múltiples testimonios */}
+                {servicioDetallado?.testimonios ? (
+                  <div className="mb-10">
+                    <h3 className="text-xl font-bold mb-6 flex items-center text-white">
+                      <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                      </span>
+                      Testimonios
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      {servicioDetallado.testimonios.map((testimonio, index) => (
+                        <div 
+                          key={index}
+                          className="p-5 rounded-lg border border-white/10 bg-gradient-to-br from-black/80 to-black/40 backdrop-blur-sm"
+                          style={{ boxShadow: `0 4px 20px ${servicioDetallado.color}20` }}
+                        >
+                          <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-3 opacity-50" style={{ color: servicioDetallado?.color }}>
+                            <path d="M10,7L4,7L4,17L10,17L10,12L6,12L10,7Z"></path>
+                            <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
+                          </svg>
+                          <blockquote className="text-gray-300 mb-4 italic text-sm">
+                            "{testimonio.texto}"
+                          </blockquote>
+                          <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
+                            {testimonio.autor}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : (
+                  <div className="mb-10">
+                    <h3 className="text-xl font-bold mb-6 flex items-center text-white">
+                      <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
+                          <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                        </svg>
+                      </span>
+                      Testimonios
+                    </h3>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                      <div className="p-5 rounded-lg border border-white/10 bg-gradient-to-br from-black/80 to-black/40 backdrop-blur-sm"
+                           style={{ boxShadow: `0 4px 20px ${servicioDetallado.color}20` }}>
+                        <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-3 opacity-50" style={{ color: servicioDetallado?.color }}>
+                          <path d="M10,7L4,7L4,17L10,17L10,12L6,12L10,7Z"></path>
+                          <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
+                        </svg>
+                        <blockquote className="text-gray-300 mb-4 italic text-sm">
+                          "Implementar este servicio fue clave para el crecimiento de nuestra clínica. Los resultados hablan por sí solos."
+                        </blockquote>
+                        <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
+                          Dr. Carlos Martínez, Clínica Dental Élite
+                        </p>
+                      </div>
+                      
+                      <div className="p-5 rounded-lg border border-white/10 bg-gradient-to-br from-black/80 to-black/40 backdrop-blur-sm"
+                           style={{ boxShadow: `0 4px 20px ${servicioDetallado.color}20` }}>
+                        <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-3 opacity-50" style={{ color: servicioDetallado?.color }}>
+                          <path d="M10,7L4,7L4,17L10,17L10,12L6,12L10,7Z"></path>
+                          <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
+                        </svg>
+                        <blockquote className="text-gray-300 mb-4 italic text-sm">
+                          "La mejora en nuestra productividad fue notable desde el primer mes. Todo el equipo está más motivado y enfocado."
+                        </blockquote>
+                        <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
+                          Dra. Ana López, Centro Dental Avanzado
+                        </p>
+                      </div>
+                      
+                      <div className="p-5 rounded-lg border border-white/10 bg-gradient-to-br from-black/80 to-black/40 backdrop-blur-sm"
+                           style={{ boxShadow: `0 4px 20px ${servicioDetallado.color}20` }}>
+                        <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-3 opacity-50" style={{ color: servicioDetallado?.color }}>
+                          <path d="M10,7L4,7L4,17L10,17L10,12L6,12L10,7Z"></path>
+                          <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
+                        </svg>
+                        <blockquote className="text-gray-300 mb-4 italic text-sm">
+                          "Invertir en este servicio ha sido la mejor decisión para nuestra clínica. El retorno de inversión ha superado todas nuestras expectativas."
+                        </blockquote>
+                        <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
+                          Dr. Miguel Sánchez, Instituto Dental Premium
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+                
+                {/* Botón CTA */}
+                <div className="mt-8 flex justify-center">
+                  <button
+                    className="px-8 py-3 rounded-full font-bold text-black transition-transform transform hover:scale-105 flex items-center gap-2"
+                    style={{ background: `linear-gradient(45deg, ${servicioDetallado?.color}, ${servicioDetallado?.color}cc)`, boxShadow: `0 5px 20px ${servicioDetallado?.color}50` }}
+                    onClick={handleCloseModal}
+                  >
+                    <span>Quiero implementar este servicio</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <path d="M5 12h14"></path>
+                      <path d="m12 5 7 7-7 7"></path>
+                    </svg>
+                  </button>
                 </div>
-              </div>
+              </>
             )}
-            
-            {/* Botón CTA */}
-            <div className="mt-8 flex justify-center">
-              <button
-                className="px-8 py-3 rounded-full font-bold text-black transition-transform transform hover:scale-105 flex items-center gap-2"
-                style={{ background: `linear-gradient(45deg, ${servicioDetallado?.color}, ${servicioDetallado?.color}cc)`, boxShadow: `0 5px 20px ${servicioDetallado?.color}50` }}
-                onClick={handleCloseModal}
-              >
-                <span>Quiero implementar este servicio</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                  <path d="M5 12h14"></path>
-                  <path d="m12 5 7 7-7 7"></path>
-                </svg>
-              </button>
-            </div>
           </div>
         </Modal>
       )}
