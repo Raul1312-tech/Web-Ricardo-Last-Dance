@@ -346,17 +346,25 @@ const serviciosDetallados = [
 const ServiciosDentalAlt = () => {
   return (
     <div className="py-20" id="servicios">
-      <h2 className="text-4xl font-bold text-center mb-4">
-        Nuestros <span className="text-purple">Servicios</span>
-      </h2>
+      {/* Fondos decorativos */}
+      <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
+        <div className="absolute top-1/4 right-1/4 w-64 h-64 rounded-full" style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)', filter: 'blur(50px)' }} />
+        <div className="absolute bottom-1/4 left-1/4 w-80 h-80 rounded-full" style={{ background: 'radial-gradient(circle, rgba(74, 222, 128, 0.3) 0%, transparent 70%)', filter: 'blur(60px)' }} />
+      </div>
       
-      <h3 className="text-2xl font-bold text-center mb-6 text-gradient-primary">
-        Las claves del método Dental Pro
-      </h3>
-      
-      <p className="text-center text-gray-400 max-w-2xl mx-auto mb-16">
-        Aplicamos metodologías específicas para aumentar la facturación de clínicas dentales a través de estrategias especializadas en cada área del negocio.
-      </p>
+      <div className="relative z-10 mb-16">
+        <h2 className="text-4xl font-bold text-center mb-4">
+          Nuestros <span className="text-purple">Servicios</span>
+        </h2>
+        
+        <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto mb-8">
+          Las claves del método Dental Pro
+        </p>
+        
+        <p className="text-center text-gray-400 max-w-2xl mx-auto">
+          Aplicamos metodologías específicas para aumentar la facturación de clínicas dentales a través de estrategias especializadas en cada área del negocio.
+        </p>
+      </div>
       
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
         {servicios.map((servicio) => (
