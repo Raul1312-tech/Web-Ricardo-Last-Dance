@@ -1,7 +1,40 @@
+"use client";
+import { useState, useEffect } from "react";
 import { serviciosItems } from "@/data/dentalPro";
+import { roadmapData } from "@/data/roadmapData";
 import { PinContainer } from "../ui/Pin";
+import { Modal } from "../ui/Modal";
+import { Roadmap } from "../ui/Roadmap";
 
 const ServiciosDental = () => {
+  const [selectedService, setSelectedService] = useState<number | null>(null);
+  const [isMounted, setIsMounted] = useState(false);
+
+  // Asegurarnos de que el componente esté montado en el cliente
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const handleOpenModal = (serviceId: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setSelectedService(serviceId);
+    console.log("Modal abierto para servicio:", serviceId); // Depuración
+  };
+
+  const handleCloseModal = () => {
+    setSelectedService(null);
+    console.log("Modal cerrado"); // Depuración
+  };
+
+  const getServiceRoadmap = (serviceId: number) => {
+    return roadmapData.find(item => item.id === serviceId);
+  };
+
+  if (!isMounted) {
+    return null; // No renderizar nada en SSR
+  }
+
   return (
     <div className="py-20" id="servicios">
       <h2 className="heading text-center mb-10">
@@ -33,6 +66,8 @@ const ServiciosDental = () => {
                   <button 
                     className="text-sm font-medium flex items-center gap-2 hover:gap-3 transition-all duration-300 mt-4"
                     style={{ color: service.color }}
+                    onClick={(e) => handleOpenModal(service.id, e)}
+                    aria-label={`Ver detalles de ${service.title}`}
                   >
                     <span>Descubre más</span>
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -51,6 +86,30 @@ const ServiciosDental = () => {
           </div>
         ))}
       </div>
+
+      {/* Modales para cada servicio */}
+      {serviciosItems.map((service) => {
+        const roadmap = getServiceRoadmap(service.id);
+        if (!roadmap) return null;
+        
+        return (
+          <Modal
+            key={service.id}
+            isOpen={selectedService === service.id}
+            onClose={handleCloseModal}
+            title={service.title}
+          >
+            <div className="text-white">
+              <p className="text-gray-300 mb-8 text-lg">{roadmap.introduction}</p>
+              
+              <Roadmap 
+                steps={roadmap.steps} 
+                color={service.color}
+              />
+            </div>
+          </Modal>
+        );
+      })}
     </div>
   );
 };

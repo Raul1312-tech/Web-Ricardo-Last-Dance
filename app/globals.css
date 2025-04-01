@@ -126,3 +126,11 @@
   opacity: 0;
   transition: opacity 0.3s ease;
 }
+
+.text-gradient-primary {
+  background: linear-gradient(90deg, #8B5CF6 0%, #4ADE80 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+}

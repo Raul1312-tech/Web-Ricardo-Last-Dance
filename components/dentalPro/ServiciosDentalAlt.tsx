@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { cn } from "@/lib/utils";
+import { Modal } from "../ui/Modal";
 
 // Colores de marca
 const brandColors = {
@@ -123,12 +124,93 @@ const servicios = [
   },
 ];
 
+// Contenido detallado de cada servicio
+const serviciosDetallados = [
+  {
+    id: 1,
+    title: "Captación de Pacientes",
+    description: "Marketing dental puntero con Funnels y embudos en redes sociales",
+    detalle: "Implementamos estrategias de marketing digital especializadas para clínicas dentales que incluyen embudos de conversión y campañas en redes sociales. Nuestro enfoque genera un flujo constante de pacientes cualificados, mejorando la tasa de conversión y optimizando el costo de adquisición de nuevos pacientes.",
+    beneficios: [
+      "Aumento del número de nuevos pacientes mensuales",
+      "Generación de leads cualificados para tratamientos de alto valor",
+      "Reducción del coste por adquisición de paciente",
+      "Posicionamiento como referente en tu especialidad"
+    ]
+  },
+  {
+    id: 2,
+    title: "Auditoría Comercial",
+    description: "Desde pre-venta telefónica hasta cierre de tratamientos de alto valor",
+    detalle: "Analizamos y optimizamos todo el proceso comercial de la clínica, desde la atención telefónica inicial hasta el cierre de tratamientos complejos. Implementamos protocolos de venta consultiva adaptados al sector dental que mejoran significativamente las tasas de conversión.",
+    beneficios: [
+      "Incremento en la tasa de conversión de presupuestos",
+      "Aumento del ticket medio por paciente",
+      "Mejora en la experiencia del paciente",
+      "Protocolos estandarizados para tratamientos de alto valor"
+    ]
+  },
+  {
+    id: 3,
+    title: "Optimización de Procesos",
+    description: "Auditoría de gastos, optimización de recursos y organización de proveedores",
+    detalle: "Realizamos una auditoría exhaustiva de los procesos internos de la clínica para identificar ineficiencias y optimizar recursos. Analizamos gastos, proveedores y flujos de trabajo para maximizar la rentabilidad sin comprometer la calidad asistencial.",
+    beneficios: [
+      "Reducción de costes operativos entre un 15-25%",
+      "Optimización de compras y gestión de proveedores",
+      "Mejora de la eficiencia en procesos clínicos",
+      "Sistemas de control de gastos e inventario"
+    ]
+  },
+  {
+    id: 4,
+    title: "Implementación Tecnológica",
+    description: "CRMs personalizados para productividad empresarial",
+    detalle: "Desarrollamos e implementamos soluciones tecnológicas personalizadas que automatizan y optimizan la gestión de la clínica. Nuestros sistemas CRM específicos para el sector dental mejoran la productividad, el seguimiento de pacientes y la gestión comercial.",
+    beneficios: [
+      "Automatización de procesos administrativos y comerciales",
+      "Seguimiento detallado del ciclo de vida del paciente",
+      "Análisis de datos en tiempo real para toma de decisiones",
+      "Integración con sistemas de gestión clínica existentes"
+    ]
+  },
+  {
+    id: 5,
+    title: "Recursos Humanos",
+    description: "Formación, entrenamiento y motivación del equipo",
+    detalle: "Desarrollamos programas de formación y motivación específicos para equipos dentales. Creamos culturas organizativas orientadas a la excelencia, con sistemas de incentivos, evaluación del desempeño y planes de carrera adaptados al sector dental.",
+    beneficios: [
+      "Reducción de la rotación de personal",
+      "Aumento de la productividad por empleado",
+      "Mejora del clima laboral y trabajo en equipo",
+      "Desarrollo de liderazgo en mandos intermedios"
+    ]
+  },
+  {
+    id: 6,
+    title: "Control y Seguimiento",
+    description: "Dashboards con KPIs y roadmaps para control exhaustivo",
+    detalle: "Implementamos sistemas de monitorización y seguimiento con KPIs específicos para clínicas dentales. Desarrollamos dashboards personalizados que permiten visualizar en tiempo real el rendimiento de la clínica en todas sus áreas operativas y comerciales.",
+    beneficios: [
+      "Visualización en tiempo real de KPIs clave",
+      "Identificación temprana de desviaciones en objetivos",
+      "Toma de decisiones basada en datos",
+      "Seguimiento de la evolución del negocio"
+    ]
+  },
+];
+
 const ServiciosDentalAlt = () => {
   return (
     <div className="py-20" id="servicios">
-      <h2 className="text-4xl font-bold text-center mb-10">
+      <h2 className="text-4xl font-bold text-center mb-4">
         Nuestros <span className="text-purple">Servicios</span>
       </h2>
+      
+      <h3 className="text-2xl font-bold text-center mb-6 text-gradient-primary">
+        Las claves del método Dental Pro
+      </h3>
+      
       <p className="text-center text-gray-400 max-w-2xl mx-auto mb-16">
         Aplicamos metodologías específicas para aumentar la facturación de clínicas dentales a través de estrategias especializadas en cada área del negocio.
       </p>
@@ -158,6 +240,7 @@ interface TiltCardProps {
 const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
   const [isHovered, setIsHovered] = useState(false);
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     const card = e.currentTarget;
@@ -184,6 +267,25 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
     setIsHovered(false);
     setRotation({ x: 0, y: 0 });
   };
+
+  // Función para abrir el modal
+  const handleOpenModal = (e: React.MouseEvent) => {
+    e.preventDefault();
+    e.stopPropagation();
+    setIsModalOpen(true);
+  };
+
+  // Función para cerrar el modal
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
+  // Obtener datos detallados del servicio
+  const getServicioDetallado = () => {
+    return serviciosDetallados.find(servicio => servicio.id === id);
+  };
+
+  const servicioDetallado = getServicioDetallado();
 
   // Patrones gráficos según ID
   const getPatternStyle = () => {
@@ -431,6 +533,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
             <button 
               className="text-sm font-medium flex items-center justify-center gap-2 hover:gap-3 transition-all duration-300 mt-auto mx-auto group"
               style={{ color: brandColors.neonGreen }}
+              onClick={handleOpenModal}
             >
               <span>Descubre más</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -469,6 +572,26 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
           />
         )}
       </motion.div>
+
+      {/* Modal para mostrar detalles del servicio */}
+      {isModalOpen && (
+        <Modal
+          isOpen={isModalOpen}
+          onClose={handleCloseModal}
+          title={servicioDetallado?.title || ""}
+        >
+          {/* Contenido del modal */}
+          <div className="p-6">
+            <p className="text-gray-300 mb-6">{servicioDetallado?.detalle}</p>
+            <h3 className="text-xl font-bold mb-3 text-white">Beneficios</h3>
+            <ul className="list-disc pl-6 mb-6 text-gray-300">
+              {servicioDetallado?.beneficios.map((beneficio, index) => (
+                <li key={index}>{beneficio}</li>
+              ))}
+            </ul>
+          </div>
+        </Modal>
+      )}
     </div>
   );
 };
