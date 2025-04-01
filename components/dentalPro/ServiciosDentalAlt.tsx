@@ -153,6 +153,14 @@ const serviciosDetallados = [
       {
         texto: "Pasamos de 20 a 78 primeras visitas mensuales en solo 3 meses.",
         autor: "Dr. Javier Sánchez, Clínica Dental Avanzada"
+      },
+      {
+        texto: "Nuestros canales digitales generan ahora un 215% más de leads cualificados para implantes y ortodoncia.",
+        autor: "Dra. María López, Clínica Estética Dental"
+      },
+      {
+        texto: "El ROI de nuestras campañas se multiplicó por cuatro. La mejor inversión que hemos hecho.",
+        autor: "Dr. Roberto Jiménez, Centro Odontológico Internacional"
       }
     ],
     roadmap: [
@@ -198,6 +206,14 @@ const serviciosDetallados = [
       {
         texto: "Nuestras conversiones de implantes pasaron del 31% al 76% en el primer trimestre.",
         autor: "Dra. Ana Martínez, Clínica Odontológica Sonrisa"
+      },
+      {
+        texto: "El ticket medio de nuestros pacientes aumentó un 58% gracias a los nuevos protocolos de venta consultiva.",
+        autor: "Dr. Carlos Fernández, Centro Dental Élite"
+      },
+      {
+        texto: "Ahora convertimos 8 de cada 10 presupuestos en tratamientos aceptados. Increíble cambio en nuestra rentabilidad.",
+        autor: "Dra. Lucía Ramírez, Instituto Dental Avanzado"
       }
     ],
     roadmap: [
@@ -232,6 +248,14 @@ const serviciosDetallados = [
       {
         texto: "Conseguimos reducir 42.000€ anuales en gastos mientras aumentamos nuestra productividad.",
         autor: "Dr. Miguel Álvarez, Instituto Dental Barcelona"
+      },
+      {
+        texto: "La reorganización de procesos nos permitió atender un 27% más de pacientes con el mismo personal.",
+        autor: "Dra. Elena Torres, Clínica Dental Familiar"
+      },
+      {
+        texto: "Optimizamos la gestión de inventario y ahorramos más de 2.300€ mensuales en material fungible.",
+        autor: "Dr. Alejandro Soto, Clínica Odontológica Central"
       }
     ],
     roadmap: [
@@ -267,6 +291,14 @@ const serviciosDetallados = [
       {
         texto: "La implementación del CRM nos permitió triplicar nuestra capacidad de gestión sin aumentar el personal.",
         autor: "Dra. Laura González, Clínica Dental Elite"
+      },
+      {
+        texto: "La automatización de citas y recordatorios redujo nuestras cancelaciones en un 68% desde el primer mes.",
+        autor: "Dr. Gabriel Martín, Centro Implantológico Dental"
+      },
+      {
+        texto: "Gracias a la tecnología implementada, nuestras auxiliares ahorran 12 horas semanales en tareas administrativas.",
+        autor: "Dra. Sofía Navarro, Clínica Dental Premium"
       }
     ],
     roadmap: [
@@ -303,6 +335,14 @@ const serviciosDetallados = [
       {
         texto: "Pasamos de una rotación del 40% anual a solo un 8% y la productividad del equipo aumentó un 62%.",
         autor: "Dr. Carlos Ruiz, Clínicas Dentales Innovación"
+      },
+      {
+        texto: "El programa de incentivos transformó por completo la motivación del equipo. Ahora todos reman en la misma dirección.",
+        autor: "Dra. Patricia Vega, Clínica Dental Integral"
+      },
+      {
+        texto: "Las formaciones en liderazgo para mandos intermedios han sido clave para escalar nuestro negocio a tres clínicas.",
+        autor: "Dr. Javier Méndez, Grupo Dental Avanzado"
       }
     ],
     roadmap: [
@@ -339,6 +379,14 @@ const serviciosDetallados = [
       {
         texto: "Por fin tenemos total claridad sobre el rendimiento de cada área y podemos anticiparnos a los problemas.",
         autor: "Dra. Patricia Gómez, Centro Odontológico Avanzado"
+      },
+      {
+        texto: "Los dashboards nos permiten tomar decisiones basadas en datos en tiempo real, lo que ha mejorado nuestra rentabilidad en un 34%.",
+        autor: "Dr. Manuel Herrera, Clínica Dental Tecnológica"
+      },
+      {
+        texto: "El seguimiento detallado nos ha permitido identificar oportunidades de mejora que estaban ocultas durante años.",
+        autor: "Dra. Carmen Sanz, Instituto Dental Científico"
       }
     ],
     roadmap: [
@@ -809,14 +857,14 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
                 Nuestro Proceso
               </h3>
               
-              <div className="relative pl-8 border-l border-dashed" style={{ borderColor: `${servicioDetallado?.color}50` }}>
+              <div className="relative pl-12 border-l border-dashed" style={{ borderColor: `${servicioDetallado?.color}50` }}>
                 {servicioDetallado?.roadmap.map((paso, index) => (
                   <div key={index} className="mb-8 relative">
-                    <div className="absolute -left-4 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: index === 0 ? servicioDetallado?.color : `${servicioDetallado?.color}40` }}>
+                    <div className="absolute -left-6 w-7 h-7 rounded-full flex items-center justify-center" style={{ background: index === 0 ? servicioDetallado?.color : `${servicioDetallado?.color}40` }}>
                       <span className="text-xs font-bold">{index + 1}</span>
                     </div>
-                    <div>
-                      <h4 className="text-lg font-bold mb-1" style={{ color: index === 0 ? servicioDetallado?.color : 'white' }}>
+                    <div className="pl-4">
+                      <h4 className="text-lg font-bold mb-2" style={{ color: index === 0 ? servicioDetallado?.color : 'white' }}>
                         {paso.title}
                       </h4>
                       <p className="text-gray-300">
@@ -828,10 +876,10 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
               </div>
             </div>
             
-            {/* Testimonios */}
+            {/* Testimonios con grid para mostrar múltiples testimonios */}
             {servicioDetallado?.testimonios && (
               <div className="mb-10">
-                <h3 className="text-xl font-bold mb-4 flex items-center text-white">
+                <h3 className="text-xl font-bold mb-6 flex items-center text-white">
                   <span className="w-8 h-8 rounded-full flex items-center justify-center mr-2" style={{ background: servicioDetallado?.color }}>
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-4 h-4 text-black">
                       <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
@@ -840,24 +888,26 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
                   Testimonios
                 </h3>
                 
-                {servicioDetallado.testimonios.map((testimonio, index) => (
-                  <div 
-                    key={index}
-                    className="p-5 rounded-lg border border-white/10 bg-gradient-to-br from-black/80 to-black/40 backdrop-blur-sm"
-                    style={{ boxShadow: `0 4px 20px ${servicioDetallado.color}20` }}
-                  >
-                    <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-3 opacity-50" style={{ color: servicioDetallado?.color }}>
-                      <path d="M10,7L4,7L4,17L10,17L10,12L6,12L10,7Z"></path>
-                      <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
-                    </svg>
-                    <blockquote className="text-gray-300 mb-4 italic">
-                      "{testimonio.texto}"
-                    </blockquote>
-                    <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
-                      {testimonio.autor}
-                    </p>
-                  </div>
-                ))}
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {servicioDetallado.testimonios.map((testimonio, index) => (
+                    <div 
+                      key={index}
+                      className="p-5 rounded-lg border border-white/10 bg-gradient-to-br from-black/80 to-black/40 backdrop-blur-sm"
+                      style={{ boxShadow: `0 4px 20px ${servicioDetallado.color}20` }}
+                    >
+                      <svg width="32" height="32" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" strokeWidth="1" strokeLinecap="round" strokeLinejoin="round" className="mb-3 opacity-50" style={{ color: servicioDetallado?.color }}>
+                        <path d="M10,7L4,7L4,17L10,17L10,12L6,12L10,7Z"></path>
+                        <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
+                      </svg>
+                      <blockquote className="text-gray-300 mb-4 italic text-sm">
+                        "{testimonio.texto}"
+                      </blockquote>
+                      <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
+                        {testimonio.autor}
+                      </p>
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
             
