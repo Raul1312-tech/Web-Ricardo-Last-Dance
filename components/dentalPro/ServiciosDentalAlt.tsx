@@ -77,10 +77,10 @@ const servicios = [
     ],
     headline: "Automatiza el 85% de tus procesos con tecnología dental inteligente",
     color: "#4ADE80",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
-      <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" fill="currentColor" fill-opacity="0.1"/>
-      <path d="M2 10H22" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M10 21.0001L10 10" stroke="currentColor" stroke-width="1.2"/>
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#4ADE80" stroke-width="0.7">
+      <rect x="2" y="2" width="20" height="20" rx="4" stroke="#4ADE80" fill="#4ADE80" fill-opacity="0.1"/>
+      <path d="M2 10H22" stroke="#4ADE80" stroke-width="1.2"/>
+      <path d="M10 21.0001L10 10" stroke="#4ADE80" stroke-width="1.2"/>
     </svg>`
   },
   {
@@ -96,40 +96,49 @@ const servicios = [
     ],
     headline: "Transforma tu equipo en un activo que multiplica tu facturación",
     color: "#8B5CF6",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
-      <circle cx="9" cy="7" r="3" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-      <circle cx="15" cy="9" r="2" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-      <circle cx="19" cy="11" r="1.5" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-      <circle cx="5" cy="9" r="2" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-      <path d="M5.75737 13.1213C5.07534 13.8033 4.39331 14.4854 4.39331 15.1674C4.39331 15.8495 4.39331 16.5315 4.93097 16.9605C5.46863 17.3895 6.00629 17.4142 6.8517 17.4142C7.69711 17.4142 8.82383 17.4142 9.5 17.4142" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M12.5 18C12.5 17.1716 13.1716 16.5 14 16.5H16C16.8284 16.5 17.5 17.1716 17.5 18V20H12.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <path d="M17.5 18C17.5 17.1716 18.1716 16.5 19 16.5H20C20.8284 16.5 21.5 17.1716 21.5 18V20H17.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <path d="M7.5 18C7.5 17.1716 8.17157 16.5 9 16.5H11C11.8284 16.5 12.5 17.1716 12.5 18V20H7.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <path d="M2.5 18C2.5 17.1716 3.17157 16.5 4 16.5H5C5.82843 16.5 6.5 17.1716 6.5 18V20H2.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <path d="M14 13L14 14.5" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M19 13L19 14.5" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M9 13L9 14.5" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M5 13L5 14.5" stroke="currentColor" stroke-linecap="round"/>
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#8B5CF6" stroke-width="0.7">
+      <circle cx="9" cy="7" r="3" stroke="#8B5CF6" fill="#8B5CF6" fill-opacity="0.2"/>
+      <circle cx="15" cy="9" r="2" stroke="#8B5CF6" fill="#8B5CF6" fill-opacity="0.2"/>
+      <circle cx="19" cy="11" r="1.5" stroke="#8B5CF6" fill="#8B5CF6" fill-opacity="0.2"/>
+      <circle cx="5" cy="9" r="2" stroke="#8B5CF6" fill="#8B5CF6" fill-opacity="0.2"/>
+      <path d="M5.75737 13.1213C5.07534 13.8033 4.39331 14.4854 4.39331 15.1674C4.39331 15.8495 4.39331 16.5315 4.93097 16.9605C5.46863 17.3895 6.00629 17.4142 6.8517 17.4142C7.69711 17.4142 8.82383 17.4142 9.5 17.4142" stroke="#8B5CF6" stroke-linecap="round"/>
+      <path d="M12.5 18C12.5 17.1716 13.1716 16.5 14 16.5H16C16.8284 16.5 17.5 17.1716 17.5 18V20H12.5V18Z" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6"/>
+      <path d="M17.5 18C17.5 17.1716 18.1716 16.5 19 16.5H20C20.8284 16.5 21.5 17.1716 21.5 18V20H17.5V18Z" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6"/>
+      <path d="M7.5 18C7.5 17.1716 8.17157 16.5 9 16.5H11C11.8284 16.5 12.5 17.1716 12.5 18V20H7.5V18Z" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6"/>
+      <path d="M2.5 18C2.5 17.1716 3.17157 16.5 4 16.5H5C5.82843 16.5 6.5 17.1716 6.5 18V20H2.5V18Z" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6"/>
+      <path d="M14 13L14 14.5" stroke="#8B5CF6" stroke-linecap="round"/>
+      <path d="M19 13L19 14.5" stroke="#8B5CF6" stroke-linecap="round"/>
+      <path d="M9 13L9 14.5" stroke="#8B5CF6" stroke-linecap="round"/>
+      <path d="M5 13L5 14.5" stroke="#8B5CF6" stroke-linecap="round"/>
     </svg>`
   },
   {
     id: 6,
     title: "Control y Seguimiento",
     description: "Dashboards con KPIs y roadmaps para control exhaustivo",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
-      <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" fill="currentColor" fill-opacity="0.1"/>
-      <path d="M21 9H3" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M6 7H7" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M9 7H10" stroke="currentColor" stroke-linecap="round"/>
-      <rect x="4" y="12" width="4" height="6" rx="0.5" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <rect x="10" y="12" width="4" height="6" rx="0.5" fill="currentColor" fill-opacity="0.6" stroke="currentColor"/>
-      <rect x="16" y="12" width="4" height="6" rx="0.5" fill="currentColor" fill-opacity="0.8" stroke="currentColor"/>
-      <path d="M6 12V18" stroke="currentColor" stroke-width="0.7"/>
-      <path d="M8 12V18" stroke="currentColor" stroke-width="0.7"/>
-      <path d="M12 12V18" stroke="currentColor" stroke-width="0.7"/>
-      <path d="M14 12V18" stroke="currentColor" stroke-width="0.7"/>
-      <path d="M18 12V18" stroke="currentColor" stroke-width="0.7"/>
-      <path d="M20 12V18" stroke="currentColor" stroke-width="0.7"/>
+    detalle: "Implementamos sistemas de monitorización y seguimiento con KPIs específicos para clínicas dentales. Desarrollamos dashboards personalizados que permiten visualizar en tiempo real el rendimiento de la clínica en todas sus áreas operativas y comerciales.",
+    beneficios: [
+      "Visualización en tiempo real de KPIs clave",
+      "Identificación temprana de desviaciones en objetivos",
+      "Toma de decisiones basada en datos",
+      "Seguimiento de la evolución del negocio"
+    ],
+    headline: "Controla cada métrica de tu clínica con dashboards en tiempo real",
+    color: "#10B981",
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#10B981" stroke-width="0.7">
+      <rect x="2" y="2" width="20" height="20" rx="2" stroke="#10B981" fill="#10B981" fill-opacity="0.1"/>
+      <path d="M21 9H3" stroke="#10B981" stroke-linecap="round"/>
+      <path d="M6 7H7" stroke="#10B981" stroke-linecap="round"/>
+      <path d="M9 7H10" stroke="#10B981" stroke-linecap="round"/>
+      <rect x="4" y="12" width="4" height="6" rx="0.5" fill="#10B981" fill-opacity="0.4" stroke="#10B981"/>
+      <rect x="10" y="12" width="4" height="6" rx="0.5" fill="#10B981" fill-opacity="0.6" stroke="#10B981"/>
+      <rect x="16" y="12" width="4" height="6" rx="0.5" fill="#10B981" fill-opacity="0.8" stroke="#10B981"/>
+      <path d="M6 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M8 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M12 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M14 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M18 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M20 12V18" stroke="#10B981" stroke-width="0.7"/>
     </svg>`
   },
 ];
@@ -248,32 +257,12 @@ const serviciosDetallados = [
     icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
       <path d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
       <path d="M19 9C19.7956 9 20.5587 8.68393 21.1213 8.12132C21.6839 7.55871 22 6.79565 22 6C22 5.20435 21.6839 4.44129 21.1213 3.87868C20.5587 3.31607 19.7956 3 19 3C18.2044 3 17.4413 3.31607 16.8787 3.87868C16.3161 4.44129 16 5.20435 16 6C16 6.08 16.0059 6.1575 16.0094 6.2369C16.0238 6.57656 16.0309 6.74639 15.9344 6.87955C15.8379 7.01271 15.6758 7.08334 15.3516 7.2246L9.964 9.7385C9.83281 9.80401 9.76722 9.83677 9.69878 9.85306C9.63642 9.8678 9.57203 9.87462 9.50766 9.87334C9.4378 9.87192 9.36734 9.85775 9.2264 9.8294C8.9404 9.7615 8.7974 9.7276 8.6913 9.8C8.5852 9.87236 8.54 10.026 8.44959 10.3334L7.4166 13.4668C7.35661 13.6468 7.32661 13.7368 7.3256 13.8313C7.32471 13.9151 7.33833 13.9982 7.3657 14.0768C7.3959 14.1639 7.4497 14.2379 7.5573 14.386L7.83341 14.7668C7.93011 14.8995 7.97846 14.9658 8.04311 15.016C8.10101 15.0608 8.16713 15.0945 8.2384 15.1154C8.31781 15.1386 8.4057 15.1386 8.5814 15.1386H9.71059C9.8814 15.1386 9.967 15.1386 10.0419 15.1613C10.1093 15.1814 10.1712 15.214 10.2244 15.2573C10.2841 15.3062 10.3286 15.3714 10.4176 15.5018L11.1674 16.6266C11.24 16.7323 11.2763 16.7852 11.326 16.823C11.3705 16.8566 11.4224 16.8799 11.4774 16.8909C11.539 16.9034 11.604 16.8998 11.734 16.8926L13.39 16.7874C13.6425 16.7736 13.7688 16.7668 13.8501 16.7039C13.9315 16.641 13.9706 16.5311 14.049 16.3112L14.5024 14.9514C14.5808 14.7315 14.62 14.6216 14.6874 14.5469C14.7548 14.4722 14.8465 14.4366 15.03 14.3654L15.6136 14.1546C15.7916 14.086 15.8806 14.0517 15.944 13.9822C16.0074 13.9127 16.0338 13.8216 16.0867 13.6394L16.5864 11.6394C16.6393 11.4571 16.6658 11.366 16.64 11.2828C16.6142 11.1996 16.544 11.1366 16.4037 11.0106L15.7824 10.5106C15.6421 10.3845 15.5719 10.3215 15.484 10.2999C15.3961 10.2784 15.3028 10.3003 15.1164 10.3441L13.7104 10.6986C13.5239 10.7425 13.4307 10.7644 13.3518 10.8137C13.2728 10.863 13.2169 10.9359 13.105 11.0816L12.0596 12.4264C11.9477 12.5722 11.8918 12.645 11.8627 12.7328C11.8336 12.8206 11.8336 12.9142 11.8336 13.1014C11.8336 13.2886 11.8336 13.3822 11.7859 13.4542C11.7382 13.5261 11.6535 13.5711 11.484 13.661L10.6096 14.078C10.4401 14.1679 10.3553 14.2129 10.2698 14.2184C10.1844 14.2238 10.0963 14.1892 9.92021 14.1198L9.04541 13.7198C8.86931 13.6505 8.78131 13.6158 8.71121 13.6346C8.64111 13.6533 8.59239 13.7212 8.4949 13.857L7.91341 14.601" stroke="currentColor" stroke-linecap="round"/>
-    </svg>`,
-    estadisticas: [
-      { valor: "23%", descripcion: "Aumento promedio en rentabilidad" },
-      { valor: "37%", descripcion: "Reducción de tiempo en gestiones" },
-      { valor: "17K€", descripcion: "Ahorro anual promedio en gastos" }
-    ],
-    testimonios: [
-      {
-        texto: "Conseguimos reducir 42.000€ anuales en gastos mientras aumentamos nuestra productividad.",
-        autor: "Dr. Miguel Álvarez, Instituto Dental Barcelona"
-      },
-      {
-        texto: "La reorganización de procesos nos permitió atender un 27% más de pacientes con el mismo personal.",
-        autor: "Dra. Elena Torres, Clínica Dental Familiar"
-      },
-      {
-        texto: "Optimizamos la gestión de inventario y ahorramos más de 2.300€ mensuales en material fungible.",
-        autor: "Dr. Alejandro Soto, Clínica Odontológica Central"
-      }
-    ],
-    roadmap: [
-      { title: "Auditoría completa", description: "Analizamos cada proceso, gasto y recurso de tu clínica para identificar ineficiencias." },
-      { title: "Rediseño de flujos de trabajo", description: "Optimizamos protocolos y asignación de recursos para máxima eficiencia." },
-      { title: "Implementación de sistemas de control", description: "Establecemos KPIs y herramientas para monitorizar la eficiencia operativa." }
-    ],
-    color: "#10B981"
+      <path d="M6 15C4.34315 15 3 13.6569 3 12C3 10.3431 4.34315 9 6 9C7.65685 9 9 10.3431 9 12" stroke="currentColor" stroke-linecap="round"/>
+      <path d="M15 12C15 13.6569 16.3431 15 18 15C19.6569 15 21 13.6569 21 12C21 10.3431 19.6569 9 18 9" stroke="currentColor" stroke-linecap="round"/>
+      <path d="M9 6C9 4.34315 7.65685 3 6 3C4.34315 3 3 4.34315 3 6C3 7.65685 4.34315 9 6 9" stroke="currentColor" stroke-linecap="round"/>
+      <path d="M12 15C12 16.6569 10.6569 18 9 18C7.34315 18 6 16.6569 6 15C6 13.3431 7.34315 12 9 12" stroke="currentColor" stroke-linecap="round"/>
+      <path d="M15 18C15 19.6569 16.3431 21 18 21C19.6569 21 21 19.6569 21 18C21 16.3431 19.6569 15 18 15" stroke="currentColor" stroke-linecap="round"/>
+    </svg>`
   },
   {
     id: 4,
@@ -287,10 +276,11 @@ const serviciosDetallados = [
       "Integración con sistemas de gestión clínica existentes"
     ],
     headline: "Automatiza el 85% de tus procesos con tecnología dental inteligente",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
-      <rect x="2" y="2" width="20" height="20" rx="4" stroke="currentColor" fill="currentColor" fill-opacity="0.1"/>
-      <path d="M2 10H22" stroke="currentColor" stroke-width="1.2"/>
-      <path d="M10 21.0001L10 10" stroke="currentColor" stroke-width="1.2"/>
+    color: "#4ADE80",
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#4ADE80" stroke-width="0.7">
+      <rect x="2" y="2" width="20" height="20" rx="4" stroke="#4ADE80" fill="#4ADE80" fill-opacity="0.1"/>
+      <path d="M2 10H22" stroke="#4ADE80" stroke-width="1.2"/>
+      <path d="M10 21.0001L10 10" stroke="#4ADE80" stroke-width="1.2"/>
     </svg>`
   },
   {
@@ -305,20 +295,21 @@ const serviciosDetallados = [
       "Desarrollo de liderazgo en mandos intermedios"
     ],
     headline: "Transforma tu equipo en un activo que multiplica tu facturación",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
-      <circle cx="9" cy="7" r="3" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-      <circle cx="15" cy="9" r="2" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-      <circle cx="19" cy="11" r="1.5" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-      <circle cx="5" cy="9" r="2" stroke="currentColor" fill="currentColor" fill-opacity="0.2"/>
-      <path d="M5.75737 13.1213C5.07534 13.8033 4.39331 14.4854 4.39331 15.1674C4.39331 15.8495 4.39331 16.5315 4.93097 16.9605C5.46863 17.3895 6.00629 17.4142 6.8517 17.4142C7.69711 17.4142 8.82383 17.4142 9.5 17.4142" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M12.5 18C12.5 17.1716 13.1716 16.5 14 16.5H16C16.8284 16.5 17.5 17.1716 17.5 18V20H12.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <path d="M17.5 18C17.5 17.1716 18.1716 16.5 19 16.5H20C20.8284 16.5 21.5 17.1716 21.5 18V20H17.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <path d="M7.5 18C7.5 17.1716 8.17157 16.5 9 16.5H11C11.8284 16.5 12.5 17.1716 12.5 18V20H7.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <path d="M2.5 18C2.5 17.1716 3.17157 16.5 4 16.5H5C5.82843 16.5 6.5 17.1716 6.5 18V20H2.5V18Z" fill="currentColor" fill-opacity="0.4" stroke="currentColor"/>
-      <path d="M14 13L14 14.5" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M19 13L19 14.5" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M9 13L9 14.5" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M5 13L5 14.5" stroke="currentColor" stroke-linecap="round"/>
+    color: "#8B5CF6",
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#8B5CF6" stroke-width="0.7">
+      <circle cx="9" cy="7" r="3" stroke="#8B5CF6" fill="#8B5CF6" fill-opacity="0.2"/>
+      <circle cx="15" cy="9" r="2" stroke="#8B5CF6" fill="#8B5CF6" fill-opacity="0.2"/>
+      <circle cx="19" cy="11" r="1.5" stroke="#8B5CF6" fill="#8B5CF6" fill-opacity="0.2"/>
+      <circle cx="5" cy="9" r="2" stroke="#8B5CF6" fill="#8B5CF6" fill-opacity="0.2"/>
+      <path d="M5.75737 13.1213C5.07534 13.8033 4.39331 14.4854 4.39331 15.1674C4.39331 15.8495 4.39331 16.5315 4.93097 16.9605C5.46863 17.3895 6.00629 17.4142 6.8517 17.4142C7.69711 17.4142 8.82383 17.4142 9.5 17.4142" stroke="#8B5CF6" stroke-linecap="round"/>
+      <path d="M12.5 18C12.5 17.1716 13.1716 16.5 14 16.5H16C16.8284 16.5 17.5 17.1716 17.5 18V20H12.5V18Z" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6"/>
+      <path d="M17.5 18C17.5 17.1716 18.1716 16.5 19 16.5H20C20.8284 16.5 21.5 17.1716 21.5 18V20H17.5V18Z" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6"/>
+      <path d="M7.5 18C7.5 17.1716 8.17157 16.5 9 16.5H11C11.8284 16.5 12.5 17.1716 12.5 18V20H7.5V18Z" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6"/>
+      <path d="M2.5 18C2.5 17.1716 3.17157 16.5 4 16.5H5C5.82843 16.5 6.5 17.1716 6.5 18V20H2.5V18Z" fill="#8B5CF6" fill-opacity="0.4" stroke="#8B5CF6"/>
+      <path d="M14 13L14 14.5" stroke="#8B5CF6" stroke-linecap="round"/>
+      <path d="M19 13L19 14.5" stroke="#8B5CF6" stroke-linecap="round"/>
+      <path d="M9 13L9 14.5" stroke="#8B5CF6" stroke-linecap="round"/>
+      <path d="M5 13L5 14.5" stroke="#8B5CF6" stroke-linecap="round"/>
     </svg>`
   },
   {
@@ -333,11 +324,21 @@ const serviciosDetallados = [
       "Seguimiento de la evolución del negocio"
     ],
     headline: "Controla cada métrica de tu clínica con dashboards en tiempo real",
-    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="0.7">
-      <rect x="2" y="2" width="20" height="20" rx="2" stroke="currentColor" fill="currentColor" fill-opacity="0.1"/>
-      <path d="M21 9H3" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M6 7H7" stroke="currentColor" stroke-linecap="round"/>
-      <path d="M9 7H10" stroke="currentColor" stroke-linecap="round"/>
+    color: "#10B981",
+    icon: `<svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#10B981" stroke-width="0.7">
+      <rect x="2" y="2" width="20" height="20" rx="2" stroke="#10B981" fill="#10B981" fill-opacity="0.1"/>
+      <path d="M21 9H3" stroke="#10B981" stroke-linecap="round"/>
+      <path d="M6 7H7" stroke="#10B981" stroke-linecap="round"/>
+      <path d="M9 7H10" stroke="#10B981" stroke-linecap="round"/>
+      <rect x="4" y="12" width="4" height="6" rx="0.5" fill="#10B981" fill-opacity="0.4" stroke="#10B981"/>
+      <rect x="10" y="12" width="4" height="6" rx="0.5" fill="#10B981" fill-opacity="0.6" stroke="#10B981"/>
+      <rect x="16" y="12" width="4" height="6" rx="0.5" fill="#10B981" fill-opacity="0.8" stroke="#10B981"/>
+      <path d="M6 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M8 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M12 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M14 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M18 12V18" stroke="#10B981" stroke-width="0.7"/>
+      <path d="M20 12V18" stroke="#10B981" stroke-width="0.7"/>
     </svg>`
   },
 ];
