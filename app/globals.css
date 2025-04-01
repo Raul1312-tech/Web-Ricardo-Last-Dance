@@ -33,6 +33,19 @@
     --ring: 240 10% 3.9%;
 
     --radius: 0.5rem;
+
+    --black-100: rgb(2, 6, 23);
+
+    --white: #fff;
+    --white-50: rgba(255, 255, 255, 0.5);
+    --white-100: rgba(255, 255, 255, 0.1);
+    --white-200: rgba(255, 255, 255, 0.7);
+
+    --white-20: rgba(255, 255, 255, 0.2);
+
+    --blue-100: #93c5fd;
+    --blue: #3b82f6;
+    --purple: rgb(139, 92, 246);
   }
 
   .dark {
@@ -70,9 +83,11 @@
   * {
     @apply border-border !scroll-smooth;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+
   button {
     @apply active:outline-none;
   }
@@ -80,6 +95,34 @@
 
 @layer utilities {
   .heading {
-    @apply font-bold text-4xl md:text-5xl text-center;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold text-white;
   }
+
+  .perspective {
+    perspective: 1500px;
+  }
+
+  .preserve-3d {
+    transform-style: preserve-3d;
+  }
+}
+
+/* Estilos para efectos 3D */
+.tilt-card {
+  transform-style: preserve-3d;
+  transition: all 0.5s ease;
+}
+
+.tilt-card-content {
+  transform: translateZ(40px);
+}
+
+.tilt-card-shine {
+  background: radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.5), transparent 60%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
