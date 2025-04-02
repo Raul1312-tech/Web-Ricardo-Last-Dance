@@ -5,14 +5,23 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 import { Modal } from "../ui/Modal";
 
-// Colores de marca
+// Colores de marca - Actualizados a la nueva paleta de gradientes morados y lila con negro
 const brandColors = {
   primaryPurple: "#8B5CF6", // Morado principal
   darkPurple: "#6D28D9",    // Morado oscuro
   lightPurple: "#A78BFA",   // Morado claro
-  neonGreen: "#4ADE80",     // Verde chicle
-  darkNeonGreen: "#10B981", // Verde chicle oscuro
+  lilaPurple: "#C4B5FD",    // Lila
+  deepBlack: "#0F0F0F",     // Negro profundo
+  neonGreen: "#4ADE80",     // Verde claro
+  darkNeonGreen: "#10B981", // Verde oscuro
 };
+
+// Gradientes para tarjetas
+const cardGradients = [
+  "linear-gradient(135deg, rgba(139,92,246,0.9) 0%, rgba(76,29,149,1) 100%)",  // Morado a morado oscuro
+  "linear-gradient(135deg, rgba(167,139,250,0.9) 0%, rgba(109,40,217,1) 100%)", // Lila a morado
+  "linear-gradient(135deg, rgba(196,181,253,0.9) 0%, rgba(124,58,237,1) 100%)"  // Lila claro a morado medio
+];
 
 // Servicios con ilustraciones profesionales
 const servicios = [
@@ -262,7 +271,32 @@ const serviciosDetallados = [
       <path d="M9 6C9 4.34315 7.65685 3 6 3C4.34315 3 3 4.34315 3 6C3 7.65685 4.34315 9 6 9" stroke="currentColor" stroke-linecap="round"/>
       <path d="M12 15C12 16.6569 10.6569 18 9 18C7.34315 18 6 16.6569 6 15C6 13.3431 7.34315 12 9 12" stroke="currentColor" stroke-linecap="round"/>
       <path d="M15 18C15 19.6569 16.3431 21 18 21C19.6569 21 21 19.6569 21 18C21 16.3431 19.6569 15 18 15" stroke="currentColor" stroke-linecap="round"/>
-    </svg>`
+    </svg>`,
+    estadisticas: [
+      { valor: "15-25%", descripcion: "Reducción de costes operativos" },
+      { valor: "+62%", descripcion: "Incremento en el ticket medio" },
+      { valor: "95%", descripcion: "Satisfacción del paciente" }
+    ],
+    testimonios: [
+      {
+        texto: "La reducción de costes operativos fue notable desde el primer mes. La eficiencia en el uso de recursos mejoró significativamente.",
+        autor: "Dr. Carlos Fernández, Centro Dental Élite"
+      },
+      {
+        texto: "El incremento en el ticket medio de nuestros pacientes fue un resultado positivo. Los nuevos protocolos de venta consultiva han mejorado significativamente la experiencia del paciente.",
+        autor: "Dra. Lucía Ramírez, Instituto Dental Avanzado"
+      },
+      {
+        texto: "La mejora en la satisfacción del paciente ha sido notable. Los nuevos protocolos de venta consultiva han mejorado significativamente la experiencia del paciente.",
+        autor: "Dr. Roberto Jiménez, Centro Odontológico Internacional"
+      }
+    ],
+    roadmap: [
+      { title: "Análisis inicial", description: "Identificamos áreas de mejora en los procesos actuales y definimos objetivos claros." },
+      { title: "Implementación de protocolos", description: "Desarrollamos y aplicamos protocolos de optimización para cada área clave de la clínica." },
+      { title: "Seguimiento y ajuste", description: "Monitorizamos el rendimiento y realizamos ajustes continuos para mantener la mejora." }
+    ],
+    color: "#10B981"
   },
   {
     id: 4,
@@ -441,20 +475,25 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
 
   // Obtener el color del servicio o usar un color predeterminado
   const getServiceColor = () => {
-    return servicioDetallado?.color || brandColors.neonGreen;
+    // Todos los elementos gráficos centrales ahora son verdes
+    return brandColors.neonGreen;
   };
 
+  // Obtener el color para la barra superior y el "Descubre más"
+  const getAccentColor = () => {
+    return brandColors.primaryPurple;
+  };
+  
   // Patrones gráficos según ID
-  const getPatternStyle = () => {
-    const patterns = [
-      `radial-gradient(circle at 15% 85%, ${brandColors.darkPurple}20 0%, transparent 35%)`,
-      `linear-gradient(135deg, ${brandColors.darkPurple}20 0%, transparent 50%)`,
-      `repeating-linear-gradient(45deg, ${brandColors.darkPurple}10 0%, ${brandColors.darkPurple}10 10px, transparent 10px, transparent 20px)`,
-      `radial-gradient(circle at 85% 15%, ${brandColors.darkPurple}20 0%, transparent 35%)`,
-      `linear-gradient(45deg, ${brandColors.darkPurple}20 0%, transparent 50%)`,
-      `repeating-radial-gradient(circle at 50% 50%, ${brandColors.darkPurple}10 0%, ${brandColors.darkPurple}10 10px, transparent 10px, transparent 20px)`,
-    ];
-    return patterns[(id - 1) % patterns.length];
+  const getPatternStyle = (): React.CSSProperties => {
+    // Usar gradiente alternando entre los 3 definidos para el fondo
+    const gradientIndex = (id - 1) % 3;
+    
+    return {
+      background: cardGradients[gradientIndex],
+      boxShadow: "0 10px 15px -3px rgba(15, 15, 15, 0.3)",
+      border: "1px solid rgba(255, 255, 255, 0.1)"
+    };
   };
   
   // Renderizar el icono animado con efectos visuales mejorados
@@ -498,8 +537,8 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
             <div 
               className="w-full h-full rounded-full" 
               style={{ 
-                backgroundImage: `radial-gradient(circle, ${brandColors.primaryPurple}20 0%, transparent 70%)`,
-                boxShadow: `0 0 15px ${brandColors.primaryPurple}33, inset 0 0 10px ${brandColors.primaryPurple}40`
+                backgroundImage: `radial-gradient(circle, ${getServiceColor()}20 0%, transparent 70%)`,
+                boxShadow: `0 0 15px ${getServiceColor()}33, inset 0 0 10px ${getServiceColor()}40`
               }}
             />
           </motion.div>
@@ -521,8 +560,8 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
             <div 
               className="w-full h-full rounded-full" 
               style={{ 
-                backgroundImage: `linear-gradient(145deg, ${brandColors.darkPurple}30, ${brandColors.primaryPurple}10)`,
-                boxShadow: `0 0 10px ${brandColors.darkPurple}33, inset 0 0 8px ${brandColors.primaryPurple}30` 
+                backgroundImage: `linear-gradient(145deg, ${getServiceColor()}30, ${getServiceColor()}10)`,
+                boxShadow: `0 0 10px ${getServiceColor()}33, inset 0 0 8px ${getServiceColor()}30` 
               }}
             />
           </motion.div>
@@ -544,8 +583,8 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
             <div 
               className="w-full h-full rounded-full" 
               style={{ 
-                backgroundImage: `radial-gradient(circle, ${brandColors.primaryPurple}40 0%, ${brandColors.darkPurple}10 70%)`,
-                boxShadow: `inset 0 0 8px ${brandColors.darkPurple}30` 
+                backgroundImage: `radial-gradient(circle, ${getServiceColor()}40 0%, ${getServiceColor()}10 70%)`,
+                boxShadow: `inset 0 0 8px ${getServiceColor()}30` 
               }}
             />
           </motion.div>
@@ -675,7 +714,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
         {/* Patrón decorativo basado en el ID */}
         <div 
           className="absolute inset-0 opacity-20" 
-          style={{ background: getPatternStyle() }}
+          style={{ background: getPatternStyle() as any }}
         />
         
         {/* Contenido de la tarjeta */}
@@ -688,10 +727,10 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
             <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
             <p className="text-gray-300 text-sm mb-6">{description}</p>
             
-            {/* Indicador visual de clickable */}
+            {/* Indicador visual de clickable - Ahora siempre en morado */}
             <div 
               className="text-sm font-medium flex items-center justify-center gap-2 hover:gap-3 transition-all duration-300 mt-auto mx-auto group"
-              style={{ color: getServiceColor() }}
+              style={{ color: getAccentColor() }}
             >
               <span>Descubre más</span>
               <span className="group-hover:translate-x-1 transition-transform">→</span>
@@ -699,10 +738,10 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
           </div>
         </div>
         
-        {/* Barra de color en la parte superior */}
+        {/* Barra de color en la parte superior - Ahora siempre en morado */}
         <div 
           className="absolute top-0 left-0 right-0 h-1.5"
-          style={{ background: getServiceColor() }}
+          style={{ background: getAccentColor() }}
         />
         
         {/* Efecto de brillo */}
