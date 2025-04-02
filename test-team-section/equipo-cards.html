@@ -1,0 +1,1044 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Sección Equipo - Dental Pro</title>
+
+    <!-- Fuentes -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Scripts externos -->
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.min.js"></script>
+
+    <style>
+        /* Estilos Globales */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0a0a1a;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        /* Sección de Equipo */
+        .team-section {
+            position: relative;
+            min-height: 100vh;
+            padding: 100px 0;
+            overflow: hidden;
+        }
+
+        #particles-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        .team-container {
+            position: relative;
+            z-index: 10;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+            font-size: 3rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .section-title .title-text {
+            color: #ffffff;
+        }
+
+        .section-title .highlighted {
+            color: #8051dd;
+            /* Nuevo color morado más parecido a la imagen */
+        }
+
+        /* Diseño de Tarjetas */
+        .card-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 30px;
+            margin: 0 auto;
+            max-width: 1200px;
+        }
+
+        .card-container {
+            width: 320px;
+            background-color: rgba(20, 20, 35, 0.7);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+            opacity: 0;
+            transform: translateY(50px);
+            position: relative;
+            border: 1px solid rgba(30, 30, 50, 0.5);
+            transform-style: preserve-3d;
+            backface-visibility: hidden;
+        }
+
+        .card-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8051dd, #6339be);
+            /* Nuevo color morado */
+            z-index: 1;
+        }
+
+        .card-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .card-container:hover {
+            transform: perspective(1000px) rotateX(25deg) translateY(10px) scale(0.95) !important;
+            box-shadow: 0 15px 25px -5px rgba(128, 81, 221, 0.3),
+                0 5px 15px rgba(138, 255, 215, 0.2) !important;
+        }
+
+        /* Efectos para el contenido y avatar cuando se hace hover en la tarjeta */
+        .card-container:hover .card-content {
+            transform: translateZ(-20px) !important;
+        }
+
+        .card-container:hover .profile-icon {
+            transform: translateZ(-30px) !important;
+        }
+
+        .profile-icon {
+            width: 80px;
+            height: 80px;
+            margin: 25px auto 15px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background-color: rgba(20, 20, 35, 0.7);
+            transform-style: preserve-3d;
+        }
+
+        .profile-icon::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border-radius: 50%;
+            background: radial-gradient(circle at center, rgba(138, 255, 215, 0.3) 0%, rgba(138, 255, 215, 0) 70%);
+            z-index: -1;
+        }
+
+        .profile-icon img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #8AFFD7;
+            box-shadow: 0 0 15px rgba(138, 255, 215, 0.5);
+        }
+
+        .card-image {
+            display: none;
+            /* Ocultamos la imagen grande */
+        }
+
+        .card-content {
+            padding: 20px;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+
+        .card-container h3 {
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-size: 1.5rem;
+        }
+
+        .card-container .role {
+            color: #8051dd;
+            /* Nuevo color morado */
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .card-container .preview {
+            color: #adadad;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+            min-height: 80px;
+        }
+
+        .view-profile-btn {
+            display: inline-flex;
+            align-items: center;
+            background: transparent;
+            color: #8051dd;
+            /* Nuevo color morado */
+            padding: 8px 0;
+            text-decoration: none;
+            font-weight: 500;
+            border: none;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .view-profile-btn::after {
+            content: '→';
+            margin-left: 8px;
+            transition: transform 0.3s ease;
+        }
+
+        .view-profile-btn:hover {
+            color: #8AFFD7;
+        }
+
+        .view-profile-btn:hover::after {
+            transform: translateX(5px);
+        }
+
+        /* Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.85);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            padding: 20px;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s, visibility 0.3s;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background-color: #0f0f1f;
+            border-radius: 12px;
+            width: 100%;
+            max-width: 900px;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+            color: #ffffff;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            transform: scale(0.8);
+            opacity: 0;
+            transition: transform 0.3s, opacity 0.3s;
+            border: 1px solid rgba(30, 30, 50, 0.5);
+        }
+
+        .modal-content::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #8051dd, #6339be);
+            /* Nuevo color morado */
+            z-index: 1;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .close-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 2rem;
+            cursor: pointer;
+            z-index: 10;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background-color: rgba(128, 81, 221, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .close-button:hover {
+            background-color: rgba(128, 81, 221, 0.4);
+        }
+
+        .modal-header {
+            padding: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            background-color: rgba(128, 81, 221, 0.05);
+            border-bottom: 1px solid rgba(128, 81, 221, 0.1);
+        }
+
+        .profile-image {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 30px;
+            border: 3px solid #8AFFD7;
+            box-shadow: 0 0 20px rgba(138, 255, 215, 0.3);
+        }
+
+        .profile-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .header-info {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .header-info h2 {
+            font-size: 2.2rem;
+            margin-bottom: 5px;
+            color: #ffffff;
+        }
+
+        .header-info .role {
+            color: #8051dd;
+            /* Nuevo color morado */
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.9rem;
+            color: #adadad;
+        }
+
+        .contact-item svg path {
+            fill: #8AFFD7;
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .modal-body section {
+            margin-bottom: 30px;
+        }
+
+        .modal-body h3 {
+            color: #8051dd;
+            /* Nuevo color morado */
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .modal-body h3::before {
+            content: "";
+            display: block;
+            width: 10px;
+            height: 10px;
+            background-color: #8AFFD7;
+            box-shadow: 0 0 10px rgba(138, 255, 215, 0.7);
+            transform: rotate(45deg);
+        }
+
+        .specialties ul,
+        .education ul,
+        .experience ul,
+        .achievements ul {
+            list-style: none;
+            padding-left: 20px;
+        }
+
+        .specialties li,
+        .achievements li {
+            position: relative;
+            padding-left: 20px;
+            margin-bottom: 10px;
+            color: #e0e0e0;
+        }
+
+        .specialties li::before,
+        .achievements li::before {
+            content: "•";
+            color: #8AFFD7;
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        .education li,
+        .experience li {
+            margin-bottom: 15px;
+            color: #e0e0e0;
+        }
+
+        .education strong,
+        .experience strong {
+            color: #ffffff;
+            display: block;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin-top: 20px;
+            border-left: 1px solid rgba(128, 81, 221, 0.3);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            left: -36px;
+            top: 5px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background-color: #8AFFD7;
+            box-shadow: 0 0 10px rgba(138, 255, 215, 0.5);
+        }
+
+        .timeline-item .period {
+            color: #8051dd;
+            /* Nuevo color morado */
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .skill-item {
+            flex: 1;
+            min-width: 250px;
+        }
+
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+
+        .skill-name span:last-child {
+            color: #8AFFD7;
+        }
+
+        .skill-bar {
+            height: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(to right, #8051dd, #8AFFD7);
+            /* Nuevo color morado con verde */
+            border-radius: 4px;
+            transition: width 1s ease;
+            box-shadow: 0 0 10px rgba(138, 255, 215, 0.3);
+        }
+
+        .philosophy {
+            background-color: rgba(20, 20, 35, 0.5);
+            padding: 25px;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .philosophy::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #8051dd, #8AFFD7);
+            /* Nuevo color morado con verde */
+        }
+
+        .philosophy::after {
+            content: '';
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 50px;
+            height: 50px;
+            background: radial-gradient(circle, rgba(138, 255, 215, 0.2) 0%, rgba(138, 255, 215, 0) 70%);
+            border-radius: 50%;
+        }
+
+        .philosophy blockquote {
+            font-style: italic;
+            color: #e0e0e0;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .card-grid {
+                justify-content: center;
+            }
+
+            .card-container {
+                width: 100%;
+                max-width: 320px;
+            }
+
+            .modal-header {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .profile-image {
+                margin-right: 0;
+                margin-bottom: 20px;
+            }
+
+            .contact-info {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <section class="team-section">
+        <div id="particles-container"></div>
+
+        <div class="team-container">
+            <h2 class="section-title">
+                <span class="title-text">Nuestro</span>
+                <span class="highlighted">Equipo</span>
+            </h2>
+
+            <div class="card-grid" id="team-grid"></div>
+        </div>
+
+        <div class="modal-overlay" id="modal-overlay">
+            <div class="modal-content">
+                <button class="close-button" id="close-modal">&times;</button>
+                <div id="modal-content-container"></div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Datos del equipo
+        const teamMembers = [
+            {
+                id: 1,
+                name: "Ricardo Hernández",
+                role: "CEO & Fundador",
+                photo: "https://randomuser.me/api/portraits/men/32.jpg",
+                preview: "Apasionado por transformar la experiencia dental con innovación y atención personalizada. Mi misión es crear sonrisas perfectas que cambien vidas.",
+                specialties: ["Odontología Estética", "Implantología Avanzada", "Gestión Clínica"],
+                education: [
+                    { degree: "Doctorado en Cirugía Dental", institution: "Universidad Complutense de Madrid", year: "2008" },
+                    { degree: "MBA en Gestión Sanitaria", institution: "ESADE Business School", year: "2012" }
+                ],
+                experience: [
+                    { position: "Director Clínico", company: "Centro Médico Internacional", period: "2012-2017" },
+                    { position: "Fundador", company: "Dental Pro", period: "2017-Presente" }
+                ],
+                skills: [
+                    { name: "Implantología", level: 95 },
+                    { name: "Estética Dental", level: 90 },
+                    { name: "Gestión Empresarial", level: 85 }
+                ],
+                philosophy: "Creo firmemente en que cada tratamiento debe ser tan único como la persona que lo recibe. La excelencia no es una meta, es nuestro punto de partida.",
+                achievements: ["Premio Nacional de Innovación Dental 2019", "Más de 5,000 casos de éxito documentados"],
+                contact: {
+                    email: "rhernandez@dentalpro.com",
+                    phone: "+34 612 345 678"
+                }
+            },
+            {
+                id: 2,
+                name: "Nerea",
+                role: "Consultora Senior",
+                photo: "https://randomuser.me/api/portraits/women/44.jpg",
+                preview: "Especialista en optimizar procesos y recursos humanos. Mi pasión es crear flujos de trabajo que mejoren la experiencia tanto de pacientes como del equipo.",
+                specialties: ["Gestión de Procesos", "RRHH en Entornos Sanitarios", "Formación Corporativa"],
+                education: [
+                    { degree: "Máster en Dirección de RRHH", institution: "IE Business School", year: "2014" },
+                    { degree: "Licenciatura en Psicología", institution: "Universidad Autónoma de Barcelona", year: "2010" }
+                ],
+                experience: [
+                    { position: "Directora de RRHH", company: "Grupo Hospitalario Quirón", period: "2014-2019" },
+                    { position: "Consultora Senior", company: "Dental Pro", period: "2019-Presente" }
+                ],
+                skills: [
+                    { name: "Optimización de Procesos", level: 95 },
+                    { name: "Gestión de Equipos", level: 90 },
+                    { name: "Psicología Organizacional", level: 85 }
+                ],
+                philosophy: "Los procesos eficientes son invisibles para el paciente pero transformadores para la clínica. Mi objetivo es crear sistemas que permitan a los profesionales centrarse en lo que mejor saben hacer.",
+                achievements: ["Reducción del 35% en tiempos de espera", "Implementación de sistema de formación continua con 98% de satisfacción"],
+                contact: {
+                    email: "nerea@dentalpro.com",
+                    phone: "+34 623 456 789"
+                }
+            },
+            {
+                id: 3,
+                name: "Carlos Cuevas",
+                role: "Consultor Senior",
+                photo: "https://randomuser.me/api/portraits/men/61.jpg",
+                preview: "Experto en marketing dental y captación de pacientes. Me apasiona ayudar a las clínicas a comunicar su valor único y atraer a los pacientes ideales.",
+                specialties: ["Marketing Digital Dental", "Estrategias de Captación", "Fidelización de Pacientes"],
+                education: [
+                    { degree: "Máster en Marketing Digital", institution: "ESIC Business School", year: "2015" },
+                    { degree: "Licenciatura en Comunicación", institution: "Universidad de Navarra", year: "2011" }
+                ],
+                experience: [
+                    { position: "Director de Marketing", company: "Vitaldent", period: "2015-2020" },
+                    { position: "Consultor Senior", company: "Dental Pro", period: "2020-Presente" }
+                ],
+                skills: [
+                    { name: "SEO/SEM para Clínicas", level: 95 },
+                    { name: "Estrategia de Contenidos", level: 90 },
+                    { name: "Analytics", level: 85 }
+                ],
+                philosophy: "Los pacientes no buscan tratamientos, buscan soluciones a sus problemas. Mi misión es ayudar a comunicar esas soluciones de forma auténtica y efectiva.",
+                achievements: ["Incremento del 45% en nuevos pacientes", "Premio al Mejor Campaña Digital en Sector Sanitario 2021"],
+                contact: {
+                    email: "ccuevas@dentalpro.com",
+                    phone: "+34 634 567 890"
+                }
+            },
+            {
+                id: 4,
+                name: "Dani",
+                role: "Consultor Tecnológico",
+                photo: "https://randomuser.me/api/portraits/men/22.jpg",
+                preview: "Implemento soluciones tecnológicas para mejorar la productividad. Mi pasión es transformar el flujo de trabajo con herramientas innovadoras que potencien resultados.",
+                specialties: ["Digitalización Clínica", "Software Dental", "Integración de Sistemas"],
+                education: [
+                    { degree: "Ingeniería Informática", institution: "Universidad Politécnica de Madrid", year: "2013" },
+                    { degree: "Máster en E-Health", institution: "La Salle URL", year: "2016" }
+                ],
+                experience: [
+                    { position: "CTO", company: "HealthTech Solutions", period: "2016-2021" },
+                    { position: "Consultor Tecnológico", company: "Dental Pro", period: "2021-Presente" }
+                ],
+                skills: [
+                    { name: "Implementación de Software Clínico", level: 95 },
+                    { name: "Optimización de Procesos Digitales", level: 90 },
+                    { name: "Seguridad de Datos Sanitarios", level: 85 }
+                ],
+                philosophy: "La tecnología debe servir a las personas, no al revés. Cada solución tecnológica que implemento está diseñada para hacer más humana la experiencia dental.",
+                achievements: ["Reducción del 40% en tiempos administrativos", "Digitalización completa de 15 clínicas de referencia"],
+                contact: {
+                    email: "dani@dentalpro.com",
+                    phone: "+34 645 678 901"
+                }
+            }
+        ];
+
+        // Función para inicializar las partículas
+        async function initParticles() {
+            await tsParticles.load("particles-container", {
+                particles: {
+                    number: {
+                        value: 80,
+                        density: { enable: true, value_area: 800 }
+                    },
+                    color: { value: "#d3d3d3" }, // Color plateado
+                    opacity: {
+                        value: 0.5,
+                        random: false
+                    },
+                    size: {
+                        value: 3,
+                        random: true
+                    },
+                    line_linked: {
+                        enable: true,
+                        distance: 150,
+                        color: "#d3d3d3", // Color plateado
+                        opacity: 0.4,
+                        width: 1
+                    },
+                    move: {
+                        enable: true,
+                        speed: 2,
+                        direction: "none",
+                        random: false,
+                        straight: false,
+                        out_mode: "out",
+                        bounce: false,
+                        attract: { enable: false, rotateX: 600, rotateY: 1200 }
+                    }
+                },
+                interactivity: {
+                    detect_on: "canvas",
+                    events: {
+                        onhover: { enable: true, mode: "grab" },
+                        onclick: { enable: true, mode: "push" },
+                        resize: true
+                    },
+                    modes: {
+                        grab: { distance: 140, line_linked: { opacity: 1 } },
+                        push: { particles_nb: 4 },
+                        remove: { particles_nb: 2 }
+                    }
+                },
+                retina_detect: true
+            });
+        }
+
+        // Función para verificar si un elemento está en el viewport
+        function isInViewport(element) {
+            const rect = element.getBoundingClientRect();
+            return (
+                rect.top <= (window.innerHeight || document.documentElement.clientHeight) &&
+                rect.bottom >= 0
+            );
+        }
+
+        // Función para animar elementos cuando son visibles
+        function animateOnScroll() {
+            const elements = document.querySelectorAll('.card-container');
+            elements.forEach((element, index) => {
+                if (isInViewport(element)) {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, index * 150);  // Retardo escalonado
+                }
+            });
+        }
+
+        // Función para renderizar el grid de miembros del equipo
+        function renderTeamGrid() {
+            const gridContainer = document.getElementById('team-grid');
+            gridContainer.innerHTML = '';
+
+            teamMembers.forEach(member => {
+                const memberElement = document.createElement('div');
+                memberElement.className = 'card-container';
+                memberElement.setAttribute('data-id', member.id);
+
+                memberElement.innerHTML = `
+                    <div class="profile-icon">
+                        <img src="${member.photo}" alt="${member.name}">
+                    </div>
+                    <div class="card-content">
+                        <h3>${member.name}</h3>
+                        <p class="role">${member.role}</p>
+                        <p class="preview">${member.preview}</p>
+                        <button class="view-profile-btn">Ver recorrido</button>
+                    </div>
+                `;
+
+                const viewButton = memberElement.querySelector('.view-profile-btn');
+                viewButton.addEventListener('click', () => openModal(member.id));
+
+                gridContainer.appendChild(memberElement);
+            });
+
+            // Animar las tarjetas después de renderizarlas
+            setTimeout(animateOnScroll, 100);
+        }
+
+        // Función para abrir el modal con los detalles del miembro
+        function openModal(memberId) {
+            const member = teamMembers.find(m => m.id === memberId);
+            if (!member) return;
+
+            const modalContent = document.getElementById('modal-content-container');
+
+            // Header
+            const headerHTML = `
+                <div class="modal-header">
+                    <div class="profile-image">
+                        <img src="${member.photo}" alt="${member.name}">
+                    </div>
+                    <div class="header-info">
+                        <h2>${member.name}</h2>
+                        <p class="role">${member.role}</p>
+                        <div class="contact-info">
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M22 6C22 4.9 21.1 4 20 4H4C2.9 4 2 4.9 2 6V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V6ZM20 6L12 11L4 6H20ZM20 18H4V8L12 13L20 8V18Z" fill="#8AFFD7"/>
+                                </svg>
+                                ${member.contact.email}
+                            </div>
+                            <div class="contact-item">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M6.62 10.79C8.06 13.62 10.38 15.94 13.21 17.38L15.41 15.18C15.69 14.9 16.08 14.82 16.43 14.93C17.55 15.3 18.75 15.5 20 15.5C20.55 15.5 21 15.95 21 16.5V20C21 20.55 20.55 21 20 21C10.61 21 3 13.39 3 4C3 3.45 3.45 3 4 3H7.5C8.05 3 8.5 3.45 8.5 4C8.5 5.25 8.7 6.45 9.07 7.57C9.18 7.92 9.1 8.31 8.82 8.59L6.62 10.79Z" fill="#8AFFD7"/>
+                                </svg>
+                                ${member.contact.phone}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // Especialidades
+            const specialtiesHTML = `
+                <section class="specialties">
+                    <h3>Especialidad y Áreas de Experiencia</h3>
+                    <ul>
+                        ${member.specialties.map(specialty => `<li>${specialty}</li>`).join('')}
+                    </ul>
+                </section>
+            `;
+
+            // Educación
+            const educationHTML = `
+                <section class="education">
+                    <h3>Formación Académica</h3>
+                    <ul>
+                        ${member.education.map(edu => `
+                            <li>
+                                <strong>${edu.degree}</strong>
+                                ${edu.institution}, ${edu.year}
+                            </li>
+                        `).join('')}
+                    </ul>
+                </section>
+            `;
+
+            // Experiencia (Timeline)
+            const experienceHTML = `
+                <section class="experience">
+                    <h3>Trayectoria Profesional</h3>
+                    <div class="timeline">
+                        ${member.experience.map(exp => `
+                            <div class="timeline-item">
+                                <span class="period">${exp.period}</span>
+                                <strong>${exp.position}</strong>
+                                ${exp.company}
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+            `;
+
+            // Habilidades
+            const skillsHTML = `
+                <section class="skills">
+                    <h3>Habilidades Técnicas</h3>
+                    <div class="skills-container">
+                        ${member.skills.map(skill => `
+                            <div class="skill-item">
+                                <div class="skill-name">
+                                    <span>${skill.name}</span>
+                                    <span>${skill.level}%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 0%"></div>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </section>
+            `;
+
+            // Filosofía
+            const philosophyHTML = `
+                <section class="philosophy">
+                    <h3>Filosofía de Trabajo</h3>
+                    <blockquote>"${member.philosophy}"</blockquote>
+                </section>
+            `;
+
+            // Logros
+            const achievementsHTML = `
+                <section class="achievements">
+                    <h3>Logros Destacados</h3>
+                    <ul>
+                        ${member.achievements.map(achievement => `<li>${achievement}</li>`).join('')}
+                    </ul>
+                </section>
+            `;
+
+            // Combinar todas las secciones
+            modalContent.innerHTML = `
+                ${headerHTML}
+                <div class="modal-body">
+                    ${specialtiesHTML}
+                    ${educationHTML}
+                    ${experienceHTML}
+                    ${skillsHTML}
+                    ${philosophyHTML}
+                    ${achievementsHTML}
+                </div>
+            `;
+
+            // Mostrar el modal
+            const modalOverlay = document.getElementById('modal-overlay');
+            modalOverlay.classList.add('active');
+
+            // Animar las barras de progreso después de abrir el modal
+            setTimeout(() => {
+                const progressBars = document.querySelectorAll('.skill-progress');
+                progressBars.forEach((bar, index) => {
+                    const skill = member.skills[index];
+                    setTimeout(() => {
+                        bar.style.width = `${skill.level}%`;
+                    }, index * 200);
+                });
+            }, 400);
+        }
+
+        // Función para cerrar el modal
+        function closeModal() {
+            const modalOverlay = document.getElementById('modal-overlay');
+            modalOverlay.classList.remove('active');
+        }
+
+        // Inicializar la página
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Inicializar partículas
+            await initParticles();
+
+            // Renderizar el grid
+            renderTeamGrid();
+
+            // Configurar evento para cerrar el modal
+            document.getElementById('close-modal').addEventListener('click', closeModal);
+
+            // Configurar animación al hacer scroll
+            window.addEventListener('scroll', animateOnScroll);
+
+            // Evitar que clics en el contenido del modal lo cierren
+            document.querySelector('.modal-content').addEventListener('click', event => {
+                event.stopPropagation();
+            });
+
+            // Cerrar modal al hacer clic en el overlay
+            document.getElementById('modal-overlay').addEventListener('click', closeModal);
+        });
+    </script>
+
+    <!-- Script para el efecto de reclinación de tarjetas -->
+    <script>
+        // Esperamos a que la página se cargue completamente
+        window.addEventListener('load', function () {
+            console.log('Aplicando efecto de reclinación a las tarjetas');
+
+            // Seleccionar todas las tarjetas
+            const cards = document.querySelectorAll('.card-container');
+            console.log('Tarjetas encontradas:', cards.length);
+
+            // Verificar que encontramos tarjetas
+            if (cards.length === 0) {
+                console.error('No se encontraron tarjetas con la clase .card-container');
+                return;
+            }
+
+            // Aplicar efecto a cada tarjeta
+            cards.forEach(card => {
+                // Aplicar estilos directamente en CSS para mejor rendimiento
+                const cardStyle = document.createElement('style');
+                cardStyle.textContent = `
+                    .card-container {
+                        transform-style: preserve-3d !important;
+                        backface-visibility: hidden !important;
+                        transition: transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1), 
+                                   box-shadow 0.6s ease !important;
+                        transform-origin: bottom center !important;
+                    }
+                    .card-container:hover {
+                        transform: perspective(1000px) rotateX(25deg) translateY(10px) scale(0.95) !important;
+                        box-shadow: 0 15px 25px -5px rgba(128, 81, 221, 0.3), 
+                                   0 5px 15px rgba(138, 255, 215, 0.2) !important;
+                    }
+                    .card-container:hover .card-content {
+                        transform: translateZ(-20px) !important;
+                    }
+                    .card-container:hover .profile-icon {
+                        transform: translateZ(-30px) !important;
+                    }
+                    .card-content, .profile-icon {
+                        transition: transform 0.6s ease !important;
+                        transform-style: preserve-3d !important;
+                    }
+                `;
+                document.head.appendChild(cardStyle);
+
+                // Solo agregamos eventos de log para depuración
+                card.addEventListener('mouseenter', function () {
+                    console.log('Cursor sobre tarjeta:', this.querySelector('h3')?.textContent);
+                });
+            });
+
+            console.log('Efecto de reclinación aplicado correctamente');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef } from "react";
-import { motion } from "framer-motion";
 
 export interface TiltCardProps {
   children: React.ReactNode;
@@ -23,7 +22,7 @@ export const TiltCard = ({
   glareColor = "#ffffff"
 }: TiltCardProps) => {
   const [rotation, setRotation] = useState({ x: 0, y: 0 });
-  const [glarePosition, setGlarePosition] = useState({ x: 0, y: 0 });
+  const [glarePosition, setGlarePosition] = useState({ x: 0.5, y: 0.5 });
   const [isHovering, setIsHovering] = useState(false);
   const cardRef = useRef<HTMLDivElement>(null);
 
@@ -39,8 +38,8 @@ export const TiltCard = ({
     const y = (e.clientY - rect.top) / height;
     
     // Mapear a rotación con el rango deseado
-    const rotateY = (x - 0.5) * tiltAmount;
-    const rotateX = (0.5 - y) * tiltAmount;
+    const rotateY = Math.max(-tiltAmount, Math.min(tiltAmount, (x - 0.5) * tiltAmount * 2));
+    const rotateX = Math.max(-tiltAmount, Math.min(tiltAmount, (0.5 - y) * tiltAmount * 2));
     
     setRotation({ x: rotateX, y: rotateY });
     setGlarePosition({ x, y });
@@ -53,10 +52,11 @@ export const TiltCard = ({
   const handleMouseLeave = () => {
     setIsHovering(false);
     setRotation({ x: 0, y: 0 });
+    setGlarePosition({ x: 0.5, y: 0.5 });
   };
 
   return (
-    <motion.div
+    <div
       ref={cardRef}
       className={`${className} overflow-hidden relative`}
       onMouseMove={handleMouseMove}
@@ -65,14 +65,9 @@ export const TiltCard = ({
       style={{
         perspective: `${perspective}px`,
         transformStyle: "preserve-3d",
-      }}
-      animate={{
-        rotateX: rotation.x,
-        rotateY: rotation.y,
-      }}
-      transition={{
-        rotateX: { type: "spring", stiffness: 300, damping: 30 },
-        rotateY: { type: "spring", stiffness: 300, damping: 30 },
+        transform: `rotateX(${rotation.x}deg) rotateY(${rotation.y}deg)`,
+        transition: "transform 0.1s ease-out",
+        willChange: "transform"
       }}
     >
       <div className={backgroundClassName}>
@@ -90,11 +85,10 @@ export const TiltCard = ({
               transparent 75%
             )`,
             opacity: glareOpacity,
-            transform: "translateZ(1px)",
             mixBlendMode: "overlay"
           }}
         />
       )}
-    </motion.div>
+    </div>
   );
 }; 

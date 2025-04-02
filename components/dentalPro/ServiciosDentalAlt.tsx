@@ -976,7 +976,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
                             <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
                           </svg>
                           <blockquote className="text-gray-300 mb-4 italic text-sm">
-                            "{testimonio.texto}"
+                            &ldquo;{testimonio.texto}&rdquo;
                           </blockquote>
                           <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
                             {testimonio.autor}
@@ -1004,7 +1004,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
                           <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
                         </svg>
                         <blockquote className="text-gray-300 mb-4 italic text-sm">
-                          "Implementar este servicio fue clave para el crecimiento de nuestra clínica. Los resultados hablan por sí solos."
+                          &ldquo;Implementar este servicio fue clave para el crecimiento de nuestra clínica. Los resultados hablan por sí solos.&rdquo;
                         </blockquote>
                         <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
                           Dr. Carlos Martínez, Clínica Dental Élite
@@ -1018,7 +1018,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
                           <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
                         </svg>
                         <blockquote className="text-gray-300 mb-4 italic text-sm">
-                          "La mejora en nuestra productividad fue notable desde el primer mes. Todo el equipo está más motivado y enfocado."
+                          &ldquo;La mejora en nuestra productividad fue notable desde el primer mes. Todo el equipo está más motivado y enfocado.&rdquo;
                         </blockquote>
                         <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
                           Dra. Ana López, Centro Dental Avanzado
@@ -1032,7 +1032,7 @@ const TiltCard = ({ id, title, description, icon }: TiltCardProps) => {
                           <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
                         </svg>
                         <blockquote className="text-gray-300 mb-4 italic text-sm">
-                          "Invertir en este servicio ha sido la mejor decisión para nuestra clínica. El retorno de inversión ha superado todas nuestras expectativas."
+                          &ldquo;Invertir en este servicio ha sido la mejor decisión para nuestra clínica. El retorno de inversión ha superado todas nuestras expectativas.&rdquo;
                         </blockquote>
                         <p className="text-sm font-semibold" style={{ color: servicioDetallado?.color }}>
                           Dr. Miguel Sánchez, Instituto Dental Premium

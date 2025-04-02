@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import { TiltCard } from '../ui/TiltCard';
-import Image from 'next/image';
 
 interface TestimonialCardProps {
   testimonial: {
@@ -28,28 +26,11 @@ const TestimonialCard = ({
 }: TestimonialCardProps) => {
   const [isHovering, setIsHovering] = useState(false);
 
-  // Variantes para animaciones
-  const cardVariants = {
-    rest: { scale: 1 },
-    hover: { scale: 1.03 },
-    tap: { 
-      scale: 0.98,
-      rotate: [0, -1, 1, -0.5, 0],
-      transition: { duration: 0.3 }
-    }
-  };
-
   return (
-    <motion.div
-      className="h-full"
-      initial="rest"
-      whileHover="hover"
-      whileTap="tap"
-      variants={cardVariants}
-      transition={{ type: "spring", stiffness: 400, damping: 17 }}
-      custom={index}
-      onHoverStart={() => setIsHovering(true)}
-      onHoverEnd={() => setIsHovering(false)}
+    <div
+      className="h-full transition-transform duration-300 hover:scale-[1.03] cursor-pointer"
+      onMouseEnter={() => setIsHovering(true)}
+      onMouseLeave={() => setIsHovering(false)}
     >
       <TiltCard 
         className={`w-full h-full ${isSmall ? 'min-h-[200px]' : 'min-h-[280px]'} cursor-pointer`}
@@ -95,60 +76,30 @@ const TestimonialCard = ({
             </p>
           </div>
           
-          <motion.button
-            onClick={() => onExpandClick(testimonial.id)}
-            className={`self-start px-5 py-2.5 rounded-full text-sm bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium mt-auto shadow-lg ${
+          <button
+            type="button" 
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onExpandClick(testimonial.id);
+            }}
+            className={`self-start px-5 py-2.5 rounded-full text-sm bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium mt-auto shadow-lg hover:shadow-purple-500/20 transition-all duration-300 hover:scale-105 ${
               feature ? 'shadow-purple-500/30 hover:shadow-purple-500/50' : ''
             } ${isSmall ? 'text-xs px-4 py-2' : ''}`}
-            whileHover={{ 
-              scale: 1.05, 
-              boxShadow: "0 10px 25px -5px rgba(139, 92, 246, 0.4)" 
-            }}
-            whileTap={{ scale: 0.95 }}
           >
             Ver caso completo
-          </motion.button>
+          </button>
         </div>
         
         {/* Efectos decorativos */}
-        <motion.div 
-          className={`absolute bottom-0 right-0 ${feature ? 'w-40 h-40' : 'w-24 h-24'} rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 blur-xl`}
-          animate={{
-            scale: isHovering ? [1, 1.3, 1.1] : 1,
-            opacity: isHovering ? [0.3, 0.6, 0.3] : 0.2,
-          }}
-          transition={{
-            duration: 2,
-            repeat: isHovering ? Infinity : 0,
-            repeatType: "reverse"
+        <div 
+          className={`absolute bottom-0 right-0 ${feature ? 'w-40 h-40' : 'w-24 h-24'} rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 blur-xl transition-opacity duration-500`}
+          style={{
+            opacity: isHovering ? 0.4 : 0.2
           }}
         />
-        
-        {/* Punto brillante que sigue al cursor */}
-        {isHovering && (
-          <motion.div 
-            className="absolute w-16 h-16 rounded-full pointer-events-none"
-            style={{
-              background: "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)",
-              filter: "blur(8px)",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              opacity: 0.6
-            }}
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.4, 0.7, 0.4],
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              repeatType: "reverse"
-            }}
-          />
-        )}
       </TiltCard>
-    </motion.div>
+    </div>
   );
 };
 

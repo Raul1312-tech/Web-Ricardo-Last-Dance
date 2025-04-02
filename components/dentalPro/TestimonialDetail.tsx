@@ -14,9 +14,22 @@ interface TestimonialDetailProps {
     situacionInicial: string;
     desafios: string[];
     proceso: { fase: string; descripcion: string }[];
-    resultados: Record<string, string>;
+    resultados: {
+      pacientes?: string;
+      conversion?: string;
+      facturacion?: string;
+      roi?: string;
+      pacientesNuevos?: string;
+      costes?: string;
+      ticketMedio?: string;
+      retencion?: string;
+      reactivacion?: string;
+      eficiencia?: string;
+      [key: string]: string | undefined;
+    };
     testimonioDetallado: string;
     imagenDestacada: string;
+    testimonioCorto?: string;
   };
 }
 
@@ -48,13 +61,10 @@ const TestimonialDetail = ({ testimonial }: TestimonialDetailProps) => {
             className="flex items-center gap-4 mb-4"
           >
             <div className="bg-white/10 rounded-lg h-16 w-40 p-2 flex items-center justify-center">
-              <Image 
-                src={testimonial.logoPlaceholder || testimonial.logo} 
-                alt={testimonial.clinica}
-                width={150}
-                height={80}
-                className="max-h-12 w-auto object-contain"
-              />
+              {/* Logo como texto */}
+              <div className="h-12 w-full flex items-center justify-center text-purple-300 text-sm font-medium">
+                {testimonial.clinica}
+              </div>
             </div>
             <div>
               <h3 className="text-xl font-bold text-white">
@@ -83,12 +93,9 @@ const TestimonialDetail = ({ testimonial }: TestimonialDetailProps) => {
           animate="visible"
           className="w-full md:w-2/5 h-64 relative rounded-lg overflow-hidden"
         >
-          <Image 
-            src={testimonial.imagenDestacada} 
-            alt={`Caso de éxito: ${testimonial.clinica}`} 
-            fill
-            className="object-cover"
-          />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 to-black/70 flex items-center justify-center">
+            <span className="text-white text-lg">{testimonial.clinica}</span>
+          </div>
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
           <div className="absolute bottom-4 left-4 right-4">
             <p className="text-white text-sm italic">Director/a: {testimonial.director}</p>
@@ -226,8 +233,8 @@ const TestimonialDetail = ({ testimonial }: TestimonialDetailProps) => {
           <path d="M10,7L4,7L4,17L10,17L10,12L6,12L10,7Z"></path>
           <path d="M20,7L14,7L14,17L20,17L20,12L16,12L20,7Z"></path>
         </svg>
-        <p className="text-xl text-white leading-relaxed italic mb-4">
-          "{testimonial.testimonioDetallado}"
+        <p className="text-xl text-gray-300/90 mb-8 italic">
+          &ldquo;{testimonial.testimonioDetallado}&rdquo;
         </p>
         <p className="text-purple-400 font-medium">{testimonial.director} - {testimonial.clinica}</p>
       </motion.div>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useRef, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import TestimonialCard from './TestimonialCard';
 import TestimonialDetail from './TestimonialDetail';
 import { Modal } from '../ui/Modal';
@@ -9,7 +8,6 @@ import { testimoniales } from '@/data/testimoniales';
 
 const TestimonialCarousel = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [direction, setDirection] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedTestimonial, setSelectedTestimonial] = useState(testimoniales[0]);
   const [isDragging, setIsDragging] = useState(false);
@@ -22,98 +20,11 @@ const TestimonialCarousel = () => {
   const prevIndex = (currentIndex - 1 + testimoniales.length) % testimoniales.length;
   const nextIndex = (currentIndex + 1) % testimoniales.length;
 
-  // Variantes de animación mejoradas para el efecto 3D
-  const cardVariants = {
-    // Tarjeta central (destacada)
-    center: {
-      x: 0,
-      opacity: 1,
-      scale: 1,
-      rotateY: 0,
-      zIndex: 30,
-      filter: "blur(0px)",
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 30,
-        duration: 0.4
-      }
-    },
-    // Tarjeta izquierda
-    left: {
-      x: '-35%',
-      opacity: 0.7,
-      scale: 0.85,
-      rotateY: 5,
-      zIndex: 20,
-      filter: "blur(1px)",
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 30,
-        duration: 0.4
-      }
-    },
-    // Tarjeta derecha
-    right: {
-      x: '35%',
-      opacity: 0.7,
-      scale: 0.85,
-      rotateY: -5,
-      zIndex: 20,
-      filter: "blur(1px)",
-      transition: {
-        type: 'spring',
-        stiffness: 300,
-        damping: 30,
-        duration: 0.4
-      }
-    },
-    // Entrada desde la izquierda
-    enterLeft: {
-      x: '-100%',
-      opacity: 0,
-      scale: 0.8,
-      rotateY: 5,
-      filter: "blur(2px)",
-      zIndex: 10
-    },
-    // Entrada desde la derecha
-    enterRight: {
-      x: '100%',
-      opacity: 0,
-      scale: 0.8,
-      rotateY: -5,
-      filter: "blur(2px)",
-      zIndex: 10
-    },
-    // Salida por la izquierda
-    exitLeft: {
-      x: '-100%',
-      opacity: 0,
-      scale: 0.8,
-      rotateY: 5,
-      filter: "blur(2px)",
-      zIndex: 10,
-      transition: { duration: 0.4, ease: "easeInOut" }
-    },
-    // Salida por la derecha
-    exitRight: {
-      x: '100%',
-      opacity: 0,
-      scale: 0.8,
-      rotateY: -5,
-      filter: "blur(2px)",
-      zIndex: 10,
-      transition: { duration: 0.4, ease: "easeInOut" }
-    }
-  };
-
   // Configurar y limpiar reproducción automática
   useEffect(() => {
     if (autoPlay) {
       autoPlayInterval.current = setInterval(() => {
-        next();
+        nextSlide();
       }, 6000);
     }
     
@@ -142,7 +53,7 @@ const TestimonialCarousel = () => {
     setTimeout(() => setAutoPlay(true), 1000);
   };
 
-  const prev = () => {
+  const prevSlide = () => {
     // Prevenir múltiples clics rápidos
     if (isDragging) return;
     setIsDragging(true);
@@ -151,22 +62,14 @@ const TestimonialCarousel = () => {
     // Pausar reproducción automática temporalmente
     setAutoPlay(false);
     
-    // Configurar dirección y actualizar índice
-    setDirection(-1);
+    // Actualizar índice
     setCurrentIndex((prevIndex) => (prevIndex - 1 + testimoniales.length) % testimoniales.length);
     
-    // Efecto visual en el botón
-    const button = document.querySelector('[aria-label="Testimonio anterior"]');
-    if (button instanceof HTMLElement) {
-      button.classList.add('active-nav');
-      setTimeout(() => button.classList.remove('active-nav'), 300);
-    }
-    
     // Reanudar reproducción automática después de un tiempo
     setTimeout(() => setAutoPlay(true), 5000);
   };
 
-  const next = () => {
+  const nextSlide = () => {
     // Prevenir múltiples clics rápidos
     if (isDragging) return;
     setIsDragging(true);
@@ -175,31 +78,21 @@ const TestimonialCarousel = () => {
     // Pausar reproducción automática temporalmente
     setAutoPlay(false);
     
-    // Configurar dirección y actualizar índice
-    setDirection(1);
+    // Actualizar índice
     setCurrentIndex((prevIndex) => (prevIndex + 1) % testimoniales.length);
-    
-    // Efecto visual en el botón
-    const button = document.querySelector('[aria-label="Siguiente testimonio"]');
-    if (button instanceof HTMLElement) {
-      button.classList.add('active-nav');
-      setTimeout(() => button.classList.remove('active-nav'), 300);
-    }
     
     // Reanudar reproducción automática después de un tiempo
     setTimeout(() => setAutoPlay(true), 5000);
   };
 
-  const paginate = (newIndex: number) => {
-    if (newIndex === currentIndex) return;
+  const goToSlide = (index: number) => {
+    if (index === currentIndex) return;
     
     // Pausar reproducción automática temporalmente
     setAutoPlay(false);
     
-    // Determinar dirección basada en el índice actual y nuevo
-    const newDirection = newIndex > currentIndex ? 1 : -1;
-    setDirection(newDirection);
-    setCurrentIndex(newIndex);
+    // Actualizar índice
+    setCurrentIndex(index);
     
     // Reanudar reproducción automática después de un tiempo
     setTimeout(() => setAutoPlay(true), 5000);
@@ -234,9 +127,9 @@ const TestimonialCarousel = () => {
     const threshold = 50; // Mínimo desplazamiento para cambiar de slide (reducido para mayor sensibilidad)
     
     if (diff > threshold) {
-      prev();
+      prevSlide();
     } else if (diff < -threshold) {
-      next();
+      nextSlide();
     }
   };
 
@@ -253,23 +146,27 @@ const TestimonialCarousel = () => {
     }
   };
 
-  // Agregar CSS para animación de botones de navegación
-  useEffect(() => {
-    // Crear un elemento de estilo para añadir las animaciones CSS
-    const style = document.createElement('style');
-    style.innerHTML = `
-      .active-nav {
-        transform: scale(0.9);
-        background-color: rgba(168, 85, 247, 0.3);
-        transition: all 0.2s ease;
-      }
-    `;
-    document.head.appendChild(style);
-    
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
+  // Manejar clic para botones de navegación
+  const handlePrevClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    prevSlide();
+  };
+
+  const handleNextClick = (e: React.MouseEvent) => {
+    e.preventDefault();
+    nextSlide();
+  };
+
+  // Manejar clic para indicadores de página
+  const handlePaginateClick = (index: number, e: React.MouseEvent) => {
+    e.preventDefault();
+    goToSlide(index);
+  };
+
+  // CSS para la transición entre slides
+  const slideStyles = {
+    transition: 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out'
+  };
 
   return (
     <div className="relative overflow-hidden py-12">
@@ -289,7 +186,7 @@ const TestimonialCarousel = () => {
       
       {/* Carrusel */}
       <div 
-        className="relative mx-auto px-4 h-[500px] sm:h-[420px] md:h-[450px] overflow-hidden perspective-1000"
+        className="relative mx-auto px-4 h-[500px] sm:h-[420px] md:h-[450px] overflow-hidden"
         ref={carouselRef}
         onMouseDown={handleDragStart}
         onMouseMove={handleDragMove}
@@ -301,115 +198,98 @@ const TestimonialCarousel = () => {
       >
         <div className="absolute inset-0 flex items-center justify-center">
           {/* Tarjeta izquierda */}
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={`left-${prevIndex}`}
-              className="absolute max-w-xs md:max-w-sm w-full"
-              initial={direction === 1 ? "enterLeft" : "exitRight"}
-              animate="left"
-              exit={direction === 1 ? "exitLeft" : "enterRight"}
-              variants={cardVariants}
-              style={{ perspective: 1000 }}
-            >
-              <TestimonialCard 
-                testimonial={testimoniales[prevIndex]} 
-                onExpandClick={handleExpandClick} 
-                index={prevIndex}
-                isSmall={true}
-              />
-            </motion.div>
-          </AnimatePresence>
+          <div 
+            className="absolute max-w-xs md:max-w-sm w-full transform"
+            style={{ 
+              ...slideStyles,
+              transform: 'translateX(-35%) scale(0.85)',
+              opacity: 0.7,
+              zIndex: 20
+            }}
+          >
+            <TestimonialCard 
+              testimonial={testimoniales[prevIndex]} 
+              onExpandClick={handleExpandClick} 
+              index={prevIndex}
+              isSmall={true}
+            />
+          </div>
 
           {/* Tarjeta central (destacada) */}
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={`center-${currentIndex}`}
-              className="absolute max-w-md md:max-w-lg w-full z-30"
-              initial={direction === 1 ? "enterRight" : "enterLeft"}
-              animate="center"
-              exit={direction === 1 ? "exitLeft" : "exitRight"}
-              variants={cardVariants}
-              style={{ perspective: 1000 }}
-            >
-              <TestimonialCard 
-                testimonial={testimoniales[currentIndex]} 
-                onExpandClick={handleExpandClick} 
-                index={currentIndex}
-                feature={true}
-              />
-            </motion.div>
-          </AnimatePresence>
+          <div 
+            className="absolute max-w-md md:max-w-lg w-full z-30"
+            style={{ 
+              ...slideStyles,
+              transform: 'translateX(0) scale(1)',
+              opacity: 1,
+              zIndex: 30
+            }}
+          >
+            <TestimonialCard 
+              testimonial={testimoniales[currentIndex]} 
+              onExpandClick={handleExpandClick} 
+              index={currentIndex}
+              feature={true}
+            />
+          </div>
 
           {/* Tarjeta derecha */}
-          <AnimatePresence initial={false} mode="wait">
-            <motion.div
-              key={`right-${nextIndex}`}
-              className="absolute max-w-xs md:max-w-sm w-full"
-              initial={direction === 1 ? "exitLeft" : "enterLeft"}
-              animate="right"
-              exit={direction === 1 ? "enterRight" : "exitLeft"}
-              variants={cardVariants}
-              style={{ perspective: 1000 }}
-            >
-              <TestimonialCard 
-                testimonial={testimoniales[nextIndex]} 
-                onExpandClick={handleExpandClick} 
-                index={nextIndex}
-                isSmall={true}
-              />
-            </motion.div>
-          </AnimatePresence>
+          <div 
+            className="absolute max-w-xs md:max-w-sm w-full"
+            style={{ 
+              ...slideStyles,
+              transform: 'translateX(35%) scale(0.85)',
+              opacity: 0.7,
+              zIndex: 20
+            }}
+          >
+            <TestimonialCard 
+              testimonial={testimoniales[nextIndex]} 
+              onExpandClick={handleExpandClick} 
+              index={nextIndex}
+              isSmall={true}
+            />
+          </div>
         </div>
 
         {/* Flechas de navegación (a los lados) */}
         <div className="absolute w-full flex justify-between items-center top-1/2 transform -translate-y-1/2 px-4 z-40">
-          <motion.button
-            whileHover={{ scale: 1.1, backgroundColor: 'rgba(168, 85, 247, 0.3)' }}
-            whileTap={{ scale: 0.9 }}
+          <button
+            type="button"
             className="p-3 rounded-full bg-black/30 backdrop-blur-sm text-white border border-white/10 shadow-lg hover:bg-purple-600/20 transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              prev();
-            }}
+            onClick={handlePrevClick}
             aria-label="Testimonio anterior"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
-          </motion.button>
+          </button>
           
-          <motion.button
-            whileHover={{ scale: 1.1, backgroundColor: 'rgba(168, 85, 247, 0.3)' }}
-            whileTap={{ scale: 0.9 }}
+          <button
+            type="button"
             className="p-3 rounded-full bg-black/30 backdrop-blur-sm text-white border border-white/10 shadow-lg hover:bg-purple-600/20 transition-colors"
-            onClick={(e) => {
-              e.stopPropagation();
-              e.preventDefault();
-              next();
-            }}
+            onClick={handleNextClick}
             aria-label="Siguiente testimonio"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
-          </motion.button>
+          </button>
         </div>
         
         {/* Indicadores de página (puntos) */}
         <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center gap-3 mt-8 pb-6">
           {testimoniales.map((_, index) => (
-            <motion.button
+            <button
               key={index}
+              type="button"
               className={`w-3 h-3 rounded-full transition-all duration-300 ${
                 index === currentIndex 
                   ? 'bg-purple-500 w-6' 
                   : 'bg-white/30 hover:bg-white/50'
               }`}
-              onClick={() => paginate(index)}
+              onClick={(e) => handlePaginateClick(index, e)}
               aria-label={`Ir al testimonio ${index + 1}`}
-              whileHover={{ scale: 1.2 }}
-              whileTap={{ scale: 0.9 }}
             />
           ))}
         </div>
@@ -428,14 +308,16 @@ const TestimonialCarousel = () => {
       >
         <TestimonialDetail testimonial={selectedTestimonial} />
         <div className="mt-6 text-center">
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+          <button
+            type="button"
             className="px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full shadow-lg hover:shadow-purple-500/20"
-            onClick={closeModal}
+            onClick={(e) => {
+              e.preventDefault();
+              closeModal();
+            }}
           >
             Cerrar caso
-          </motion.button>
+          </button>
         </div>
       </Modal>
     </div>

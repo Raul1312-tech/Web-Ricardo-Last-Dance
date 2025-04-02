@@ -1,48 +1,40 @@
-import { equipo } from "@/data/dentalPro";
-import { InfiniteMovingCards } from "../ui/InfiniteCards";
-import { HoverBorderGradient } from "../ui/HoverBorder";
+import { useEffect } from "react";
 
 const EquipoDental = () => {
-  const equipoCards = equipo.map((miembro) => ({
-    quote: miembro.descripcion,
-    name: miembro.nombre,
-    title: miembro.puesto,
-  }));
+  useEffect(() => {
+    // Cargar el script de particlesJS
+    const loadParticlesScript = () => {
+      const tsparticlesEngine = document.createElement("script");
+      tsparticlesEngine.src = "https://cdn.jsdelivr.net/npm/tsparticles-engine@2.12.0/tsparticles.engine.min.js";
+      tsparticlesEngine.async = true;
+
+      const tsparticles = document.createElement("script");
+      tsparticles.src = "https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.min.js";
+      tsparticles.async = true;
+
+      document.body.appendChild(tsparticlesEngine);
+      document.body.appendChild(tsparticles);
+      
+      // Después de cargar los scripts, cargar el contenido del iframe
+      tsparticles.onload = () => {
+        const iframe = document.getElementById('equipo-iframe') as HTMLIFrameElement;
+        if (iframe && iframe.contentWindow) {
+          iframe.style.height = '100vh';
+        }
+      };
+    };
+
+    loadParticlesScript();
+  }, []);
 
   return (
-    <div className="py-20">
-      <h2 className="heading text-center mb-10">
-        Nuestro <span className="text-purple">Equipo</span>
-      </h2>
-      
-      <div className="mb-20">
-        <InfiniteMovingCards 
-          items={equipoCards}
-          speed="slow"
-          pauseOnHover={true}
-        />
-      </div>
-
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 mt-20">
-        {equipo.map((miembro) => (
-          <div key={miembro.id} className="flex justify-center">
-            <HoverBorderGradient className="border border-purple-500/20 bg-black/80 backdrop-blur-md rounded-xl p-6">
-              <div className="flex flex-col items-center text-center">
-                <div className="relative w-32 h-32 overflow-hidden rounded-full mb-4">
-                  <img 
-                    src={miembro.img} 
-                    alt={miembro.nombre} 
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-1">{miembro.nombre}</h3>
-                <p className="text-purple-400 text-sm mb-3">{miembro.puesto}</p>
-                <p className="text-gray-300 text-sm">{miembro.descripcion}</p>
-              </div>
-            </HoverBorderGradient>
-          </div>
-        ))}
-      </div>
+    <div className="w-full h-screen overflow-hidden">
+      <iframe 
+        id="equipo-iframe"
+        src="/test-team-section/equipo-cards.html" 
+        className="w-full h-screen border-none"
+        title="Equipo Dental Pro"
+      />
     </div>
   );
 };
