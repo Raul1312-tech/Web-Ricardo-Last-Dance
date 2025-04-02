@@ -1,5 +1,5 @@
 import { testimonios } from "@/data/dentalPro";
-import { InfiniteMovingCards } from "../ui/InfiniteCards";
+import TestimonialCarousel from "./TestimonialCarousel";
 
 const TestimoniosDental = () => {
   return (
@@ -8,12 +8,8 @@ const TestimoniosDental = () => {
         Lo que dicen <span className="text-purple">nuestros clientes</span>
       </h2>
       
-      <div className="mb-20">
-        <InfiniteMovingCards 
-          items={testimonios}
-          speed="normal"
-          pauseOnHover={true}
-        />
+      <div className="mb-10">
+        <TestimonialCarousel />
       </div>
     </div>
   );
