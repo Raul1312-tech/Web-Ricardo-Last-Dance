@@ -58,18 +58,18 @@ const TestimonialCard = ({
         glareOpacity={0.15}
         backgroundClassName={`relative bg-gradient-to-br ${
           feature 
-            ? 'from-purple-950/50 to-black/90 shadow-xl shadow-purple-900/10' 
-            : 'from-black/80 to-purple-950/20'
-        } backdrop-blur-sm border ${
-          feature ? 'border-purple-500/30' : 'border-purple-500/10'
-        } rounded-xl p-6 h-full flex flex-col`}
+            ? 'from-purple-950 to-black shadow-xl shadow-purple-900/20' 
+            : 'from-black/80 to-purple-950/30'
+        } backdrop-blur-md border ${
+          feature ? 'border-purple-500/50' : 'border-purple-500/10'
+        } rounded-xl p-6 h-full flex flex-col ${feature ? 'bg-opacity-100' : ''}`}
       >
         <div 
-          className="absolute inset-0 overflow-hidden rounded-xl"
-          style={{ opacity: 0.05 }}
+          className={`absolute inset-0 overflow-hidden rounded-xl ${feature ? 'bg-black' : ''}`}
+          style={{ opacity: feature ? 0.95 : 0.1 }}
         >
           <div 
-            className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-purple-900/20 backdrop-blur-[2px]"
+            className={`absolute inset-0 bg-gradient-to-br from-purple-500/30 to-purple-900/30 backdrop-blur-[3px] ${feature ? 'from-purple-600/50 to-purple-950/80' : ''}`}
             style={{
               backgroundSize: '200% 200%',
               animation: 'gradient 15s ease infinite',
@@ -77,29 +77,33 @@ const TestimonialCard = ({
           />
         </div>
 
-        <div className="flex flex-col justify-between h-full z-10 relative">
+        <div className={`flex flex-col justify-between h-full z-10 relative ${feature ? 'bg-opacity-100' : ''}`}>
           <div>
             <div className="flex justify-between items-center mb-5">
               <div className={`bg-white/10 rounded-lg h-14 ${isSmall ? 'w-28' : 'w-40'} p-2 flex items-center justify-center`}>
-                <Image 
-                  src={testimonial.logoPlaceholder} 
-                  alt={testimonial.clinica}
-                  width={150}
-                  height={80}
-                  className="max-h-10 w-auto object-contain"
-                />
+                {/* Logo como texto en lugar de imagen */}
+                <div className="max-h-10 w-auto relative">
+                  <div className="h-10 w-full flex items-center justify-center text-purple-300 text-sm font-medium">
+                    {testimonial.clinica}
+                  </div>
+                </div>
               </div>
               <span className={`text-sm text-purple-300 ${isSmall ? 'text-xs' : ''}`}>{testimonial.ubicacion}</span>
             </div>
             <p className={`text-white ${feature ? 'text-xl' : isSmall ? 'text-sm' : 'text-base'} font-medium leading-relaxed mb-6`}>
-              "{testimonial.testimonioCorto}"
+              &ldquo;{testimonial.testimonioCorto}&rdquo;
             </p>
           </div>
           
           <motion.button
             onClick={() => onExpandClick(testimonial.id)}
-            className={`self-start px-4 py-2 rounded-full text-sm bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium mt-auto ${isSmall ? 'text-xs px-3 py-1.5' : ''}`}
-            whileHover={{ scale: 1.05 }}
+            className={`self-start px-5 py-2.5 rounded-full text-sm bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium mt-auto shadow-lg ${
+              feature ? 'shadow-purple-500/30 hover:shadow-purple-500/50' : ''
+            } ${isSmall ? 'text-xs px-4 py-2' : ''}`}
+            whileHover={{ 
+              scale: 1.05, 
+              boxShadow: "0 10px 25px -5px rgba(139, 92, 246, 0.4)" 
+            }}
             whileTap={{ scale: 0.95 }}
           >
             Ver caso completo
@@ -108,7 +112,7 @@ const TestimonialCard = ({
         
         {/* Efectos decorativos */}
         <motion.div 
-          className={`absolute bottom-0 right-0 ${feature ? 'w-32 h-32' : 'w-20 h-20'} rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 blur-xl`}
+          className={`absolute bottom-0 right-0 ${feature ? 'w-40 h-40' : 'w-24 h-24'} rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 blur-xl`}
           animate={{
             scale: isHovering ? [1, 1.3, 1.1] : 1,
             opacity: isHovering ? [0.3, 0.6, 0.3] : 0.2,
@@ -125,7 +129,7 @@ const TestimonialCard = ({
           <motion.div 
             className="absolute w-16 h-16 rounded-full pointer-events-none"
             style={{
-              background: "radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)",
+              background: "radial-gradient(circle, rgba(139, 92, 246, 0.4) 0%, transparent 70%)",
               filter: "blur(8px)",
               top: "50%",
               left: "50%",
@@ -134,7 +138,7 @@ const TestimonialCard = ({
             }}
             animate={{
               scale: [1, 1.2, 1],
-              opacity: [0.4, 0.6, 0.4],
+              opacity: [0.4, 0.7, 0.4],
             }}
             transition={{
               duration: 1.5,

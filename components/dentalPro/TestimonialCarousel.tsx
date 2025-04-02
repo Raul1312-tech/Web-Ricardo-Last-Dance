@@ -41,10 +41,10 @@ const TestimonialCarousel = () => {
     },
     // Tarjeta izquierda
     left: {
-      x: '-25%',
+      x: '-35%',
       opacity: 0.7,
       scale: 0.85,
-      rotateY: 15,
+      rotateY: 5,
       zIndex: 20,
       filter: "blur(1px)",
       transition: {
@@ -56,10 +56,10 @@ const TestimonialCarousel = () => {
     },
     // Tarjeta derecha
     right: {
-      x: '25%',
+      x: '35%',
       opacity: 0.7,
       scale: 0.85,
-      rotateY: -15,
+      rotateY: -5,
       zIndex: 20,
       filter: "blur(1px)",
       transition: {
@@ -71,38 +71,38 @@ const TestimonialCarousel = () => {
     },
     // Entrada desde la izquierda
     enterLeft: {
-      x: '-60%',
+      x: '-100%',
       opacity: 0,
-      scale: 0.7,
-      rotateY: 25,
+      scale: 0.8,
+      rotateY: 5,
       filter: "blur(2px)",
       zIndex: 10
     },
     // Entrada desde la derecha
     enterRight: {
-      x: '60%',
+      x: '100%',
       opacity: 0,
-      scale: 0.7,
-      rotateY: -25,
+      scale: 0.8,
+      rotateY: -5,
       filter: "blur(2px)",
       zIndex: 10
     },
     // Salida por la izquierda
     exitLeft: {
-      x: '-60%',
+      x: '-100%',
       opacity: 0,
-      scale: 0.7,
-      rotateY: 25,
+      scale: 0.8,
+      rotateY: 5,
       filter: "blur(2px)",
       zIndex: 10,
       transition: { duration: 0.4, ease: "easeInOut" }
     },
     // Salida por la derecha
     exitRight: {
-      x: '60%',
+      x: '100%',
       opacity: 0,
-      scale: 0.7,
-      rotateY: -25,
+      scale: 0.8,
+      rotateY: -5,
       filter: "blur(2px)",
       zIndex: 10,
       transition: { duration: 0.4, ease: "easeInOut" }
@@ -142,20 +142,67 @@ const TestimonialCarousel = () => {
     setTimeout(() => setAutoPlay(true), 1000);
   };
 
-  const next = () => {
-    setDirection(1);
-    setCurrentIndex((prev) => (prev + 1) % testimoniales.length);
+  const prev = () => {
+    // Prevenir múltiples clics rápidos
+    if (isDragging) return;
+    setIsDragging(true);
+    setTimeout(() => setIsDragging(false), 500);
+    
+    // Pausar reproducción automática temporalmente
+    setAutoPlay(false);
+    
+    // Configurar dirección y actualizar índice
+    setDirection(-1);
+    setCurrentIndex((prevIndex) => (prevIndex - 1 + testimoniales.length) % testimoniales.length);
+    
+    // Efecto visual en el botón
+    const button = document.querySelector('[aria-label="Testimonio anterior"]');
+    if (button instanceof HTMLElement) {
+      button.classList.add('active-nav');
+      setTimeout(() => button.classList.remove('active-nav'), 300);
+    }
+    
+    // Reanudar reproducción automática después de un tiempo
+    setTimeout(() => setAutoPlay(true), 5000);
   };
 
-  const prev = () => {
-    setDirection(-1);
-    setCurrentIndex((prev) => (prev - 1 + testimoniales.length) % testimoniales.length);
+  const next = () => {
+    // Prevenir múltiples clics rápidos
+    if (isDragging) return;
+    setIsDragging(true);
+    setTimeout(() => setIsDragging(false), 500);
+    
+    // Pausar reproducción automática temporalmente
+    setAutoPlay(false);
+    
+    // Configurar dirección y actualizar índice
+    setDirection(1);
+    setCurrentIndex((prevIndex) => (prevIndex + 1) % testimoniales.length);
+    
+    // Efecto visual en el botón
+    const button = document.querySelector('[aria-label="Siguiente testimonio"]');
+    if (button instanceof HTMLElement) {
+      button.classList.add('active-nav');
+      setTimeout(() => button.classList.remove('active-nav'), 300);
+    }
+    
+    // Reanudar reproducción automática después de un tiempo
+    setTimeout(() => setAutoPlay(true), 5000);
   };
 
   const paginate = (newIndex: number) => {
+    if (newIndex === currentIndex) return;
+    
+    // Pausar reproducción automática temporalmente
+    setAutoPlay(false);
+    
+    // Determinar dirección basada en el índice actual y nuevo
     const newDirection = newIndex > currentIndex ? 1 : -1;
     setDirection(newDirection);
     setCurrentIndex(newIndex);
+    
+    // Reanudar reproducción automática después de un tiempo
+    setTimeout(() => setAutoPlay(true), 5000);
   };
 
   // Eventos de arrastre para navegación táctil
@@ -206,6 +253,24 @@ const TestimonialCarousel = () => {
     }
   };
 
+  // Agregar CSS para animación de botones de navegación
+  useEffect(() => {
+    // Crear un elemento de estilo para añadir las animaciones CSS
+    const style = document.createElement('style');
+    style.innerHTML = `
+      .active-nav {
+        transform: scale(0.9);
+        background-color: rgba(168, 85, 247, 0.3);
+        transition: all 0.2s ease;
+      }
+    `;
+    document.head.appendChild(style);
+    
+    return () => {
+      document.head.removeChild(style);
+    };
+  }, []);
+
   return (
     <div className="relative overflow-hidden py-12">
       {/* Decoración de fondo */}
@@ -236,7 +301,7 @@ const TestimonialCarousel = () => {
       >
         <div className="absolute inset-0 flex items-center justify-center">
           {/* Tarjeta izquierda */}
-          <AnimatePresence initial={false} mode="popLayout">
+          <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={`left-${prevIndex}`}
               className="absolute max-w-xs md:max-w-sm w-full"
@@ -256,7 +321,7 @@ const TestimonialCarousel = () => {
           </AnimatePresence>
 
           {/* Tarjeta central (destacada) */}
-          <AnimatePresence initial={false} mode="popLayout">
+          <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={`center-${currentIndex}`}
               className="absolute max-w-md md:max-w-lg w-full z-30"
@@ -276,7 +341,7 @@ const TestimonialCarousel = () => {
           </AnimatePresence>
 
           {/* Tarjeta derecha */}
-          <AnimatePresence initial={false} mode="popLayout">
+          <AnimatePresence initial={false} mode="wait">
             <motion.div
               key={`right-${nextIndex}`}
               className="absolute max-w-xs md:max-w-sm w-full"
@@ -296,44 +361,57 @@ const TestimonialCarousel = () => {
           </AnimatePresence>
         </div>
 
-        {/* Controles de navegación */}
-        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center gap-4 mt-8 pb-4">
+        {/* Flechas de navegación (a los lados) */}
+        <div className="absolute w-full flex justify-between items-center top-1/2 transform -translate-y-1/2 px-4 z-40">
           <motion.button
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1, backgroundColor: 'rgba(168, 85, 247, 0.3)' }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full bg-white/10 text-white hover:bg-purple-500/20 transition-colors"
-            onClick={prev}
+            className="p-3 rounded-full bg-black/30 backdrop-blur-sm text-white border border-white/10 shadow-lg hover:bg-purple-600/20 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              prev();
+            }}
             aria-label="Testimonio anterior"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
           </motion.button>
-          
-          <div className="flex gap-2">
-            {testimoniales.map((_, index) => (
-              <motion.button
-                key={index}
-                className={`w-3 h-3 rounded-full transition-colors ${index === currentIndex ? 'bg-purple-500' : 'bg-white/30'}`}
-                onClick={() => paginate(index)}
-                aria-label={`Ir al testimonio ${index + 1}`}
-                whileHover={{ scale: 1.2 }}
-                whileTap={{ scale: 0.9 }}
-              />
-            ))}
-          </div>
           
           <motion.button
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1, backgroundColor: 'rgba(168, 85, 247, 0.3)' }}
             whileTap={{ scale: 0.9 }}
-            className="p-2 rounded-full bg-white/10 text-white hover:bg-purple-500/20 transition-colors"
-            onClick={next}
+            className="p-3 rounded-full bg-black/30 backdrop-blur-sm text-white border border-white/10 shadow-lg hover:bg-purple-600/20 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              e.preventDefault();
+              next();
+            }}
             aria-label="Siguiente testimonio"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
           </motion.button>
+        </div>
+        
+        {/* Indicadores de página (puntos) */}
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center gap-3 mt-8 pb-6">
+          {testimoniales.map((_, index) => (
+            <motion.button
+              key={index}
+              className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                index === currentIndex 
+                  ? 'bg-purple-500 w-6' 
+                  : 'bg-white/30 hover:bg-white/50'
+              }`}
+              onClick={() => paginate(index)}
+              aria-label={`Ir al testimonio ${index + 1}`}
+              whileHover={{ scale: 1.2 }}
+              whileTap={{ scale: 0.9 }}
+            />
+          ))}
         </div>
         
         {/* Indicación de deslizar para móviles */}
