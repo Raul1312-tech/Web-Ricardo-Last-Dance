@@ -1,6 +1,7 @@
 import { metodologia } from "@/data/dentalPro";
 import { LayoutGrid } from "../ui/LayoutGrid";
 import { Button } from "../ui/MovingBorders";
+import CalculadoraRentabilidad from "./CalculadoraRentabilidad";
 
 const MetodologiaDental = () => {
   return (
@@ -20,7 +21,10 @@ const MetodologiaDental = () => {
           Sistema de gestión integral para clínicas dentales con resultados comprobados
         </p>
         
-        <div className="flex justify-center mb-16">
+        {/* Calculadora de rentabilidad */}
+        <CalculadoraRentabilidad />
+        
+        <div className="flex justify-center my-12">
           <Button
             borderRadius="1.75rem"
             className="bg-black dark:bg-slate-900 text-white border-neutral-200 dark:border-slate-800"
