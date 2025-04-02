@@ -27,9 +27,10 @@ const MetodologiaDental = () => {
         <div className="flex justify-center my-12">
           <Button
             borderRadius="1.75rem"
-            className="bg-black dark:bg-slate-900 text-white border-neutral-200 dark:border-slate-800"
+            className="bg-black dark:bg-slate-900 text-white border-neutral-200 dark:border-slate-800 px-8 py-4 text-lg font-medium"
+            containerClassName="min-w-[220px]"
           >
-            Descubre cómo <span className="ml-2">→</span>
+            Descubre cómo <span className="ml-4">→</span>
           </Button>
         </div>
         
