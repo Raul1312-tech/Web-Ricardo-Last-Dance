@@ -18,37 +18,95 @@ const TestimonialCarousel = () => {
   const [autoPlay, setAutoPlay] = useState(true);
   const autoPlayInterval = useRef<NodeJS.Timeout | null>(null);
 
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.8,
-      rotateY: direction > 0 ? 10 : -10,
-    }),
+  // Calcular índices para la vista de 3 tarjetas
+  const prevIndex = (currentIndex - 1 + testimoniales.length) % testimoniales.length;
+  const nextIndex = (currentIndex + 1) % testimoniales.length;
+
+  // Variantes de animación mejoradas para el efecto 3D
+  const cardVariants = {
+    // Tarjeta central (destacada)
     center: {
       x: 0,
       opacity: 1,
       scale: 1,
       rotateY: 0,
+      zIndex: 30,
+      filter: "blur(0px)",
       transition: {
-        x: { type: 'spring', stiffness: 300, damping: 30 },
-        opacity: { duration: 0.5 },
-        scale: { duration: 0.5 },
-        rotateY: { duration: 0.4 }
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+        duration: 0.4
       }
     },
-    exit: (direction: number) => ({
-      x: direction < 0 ? 1000 : -1000,
-      opacity: 0,
-      scale: 0.8,
-      rotateY: direction < 0 ? 10 : -10,
+    // Tarjeta izquierda
+    left: {
+      x: '-25%',
+      opacity: 0.7,
+      scale: 0.85,
+      rotateY: 15,
+      zIndex: 20,
+      filter: "blur(1px)",
       transition: {
-        x: { type: 'spring', stiffness: 300, damping: 30 },
-        opacity: { duration: 0.5 },
-        scale: { duration: 0.5 },
-        rotateY: { duration: 0.4 }
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+        duration: 0.4
       }
-    })
+    },
+    // Tarjeta derecha
+    right: {
+      x: '25%',
+      opacity: 0.7,
+      scale: 0.85,
+      rotateY: -15,
+      zIndex: 20,
+      filter: "blur(1px)",
+      transition: {
+        type: 'spring',
+        stiffness: 300,
+        damping: 30,
+        duration: 0.4
+      }
+    },
+    // Entrada desde la izquierda
+    enterLeft: {
+      x: '-60%',
+      opacity: 0,
+      scale: 0.7,
+      rotateY: 25,
+      filter: "blur(2px)",
+      zIndex: 10
+    },
+    // Entrada desde la derecha
+    enterRight: {
+      x: '60%',
+      opacity: 0,
+      scale: 0.7,
+      rotateY: -25,
+      filter: "blur(2px)",
+      zIndex: 10
+    },
+    // Salida por la izquierda
+    exitLeft: {
+      x: '-60%',
+      opacity: 0,
+      scale: 0.7,
+      rotateY: 25,
+      filter: "blur(2px)",
+      zIndex: 10,
+      transition: { duration: 0.4, ease: "easeInOut" }
+    },
+    // Salida por la derecha
+    exitRight: {
+      x: '60%',
+      opacity: 0,
+      scale: 0.7,
+      rotateY: -25,
+      filter: "blur(2px)",
+      zIndex: 10,
+      transition: { duration: 0.4, ease: "easeInOut" }
+    }
   };
 
   // Configurar y limpiar reproducción automática
@@ -84,17 +142,14 @@ const TestimonialCarousel = () => {
     setTimeout(() => setAutoPlay(true), 1000);
   };
 
-  const prevIndex = (currentIndex - 1 + testimoniales.length) % testimoniales.length;
-  const nextIndex = (currentIndex + 1) % testimoniales.length;
-
   const next = () => {
     setDirection(1);
-    setCurrentIndex(nextIndex);
+    setCurrentIndex((prev) => (prev + 1) % testimoniales.length);
   };
 
   const prev = () => {
     setDirection(-1);
-    setCurrentIndex(prevIndex);
+    setCurrentIndex((prev) => (prev - 1 + testimoniales.length) % testimoniales.length);
   };
 
   const paginate = (newIndex: number) => {
@@ -129,7 +184,7 @@ const TestimonialCarousel = () => {
     }
     
     const diff = endX - startX;
-    const threshold = 100; // Mínimo desplazamiento para cambiar de slide
+    const threshold = 50; // Mínimo desplazamiento para cambiar de slide (reducido para mayor sensibilidad)
     
     if (diff > threshold) {
       prev();
@@ -140,10 +195,7 @@ const TestimonialCarousel = () => {
 
   const handleDragMove = (e: React.MouseEvent | React.TouchEvent) => {
     if (!isDragging || !carouselRef.current) return;
-    
     e.preventDefault();
-    
-    // No hacemos nada con el movimiento, solo evitamos comportamientos predeterminados
   };
 
   // Manejar clic para ver caso completo
@@ -172,7 +224,7 @@ const TestimonialCarousel = () => {
       
       {/* Carrusel */}
       <div 
-        className="relative max-w-5xl mx-auto px-4"
+        className="relative mx-auto px-4 h-[500px] sm:h-[420px] md:h-[450px] overflow-hidden perspective-1000"
         ref={carouselRef}
         onMouseDown={handleDragStart}
         onMouseMove={handleDragMove}
@@ -182,47 +234,70 @@ const TestimonialCarousel = () => {
         onTouchMove={handleDragMove}
         onTouchEnd={handleDragEnd}
       >
-        <AnimatePresence initial={false} custom={direction} mode="wait">
-          <motion.div
-            key={currentIndex}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            className="flex flex-wrap justify-center gap-4 md:gap-6 py-6"
-          >
-            <div className="w-full md:w-2/3">
+        <div className="absolute inset-0 flex items-center justify-center">
+          {/* Tarjeta izquierda */}
+          <AnimatePresence initial={false} mode="popLayout">
+            <motion.div
+              key={`left-${prevIndex}`}
+              className="absolute max-w-xs md:max-w-sm w-full"
+              initial={direction === 1 ? "enterLeft" : "exitRight"}
+              animate="left"
+              exit={direction === 1 ? "exitLeft" : "enterRight"}
+              variants={cardVariants}
+              style={{ perspective: 1000 }}
+            >
+              <TestimonialCard 
+                testimonial={testimoniales[prevIndex]} 
+                onExpandClick={handleExpandClick} 
+                index={prevIndex}
+                isSmall={true}
+              />
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Tarjeta central (destacada) */}
+          <AnimatePresence initial={false} mode="popLayout">
+            <motion.div
+              key={`center-${currentIndex}`}
+              className="absolute max-w-md md:max-w-lg w-full z-30"
+              initial={direction === 1 ? "enterRight" : "enterLeft"}
+              animate="center"
+              exit={direction === 1 ? "exitLeft" : "exitRight"}
+              variants={cardVariants}
+              style={{ perspective: 1000 }}
+            >
               <TestimonialCard 
                 testimonial={testimoniales[currentIndex]} 
                 onExpandClick={handleExpandClick} 
-                feature 
                 index={currentIndex}
+                feature={true}
               />
-            </div>
-            <div className="w-full md:w-1/3 flex flex-col gap-4 md:gap-6">
-              <div className="h-1/2">
-                <TestimonialCard 
-                  testimonial={testimoniales[prevIndex]} 
-                  onExpandClick={handleExpandClick} 
-                  isSmall 
-                  index={prevIndex}
-                />
-              </div>
-              <div className="h-1/2">
-                <TestimonialCard 
-                  testimonial={testimoniales[nextIndex]} 
-                  onExpandClick={handleExpandClick} 
-                  isSmall 
-                  index={nextIndex}
-                />
-              </div>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Tarjeta derecha */}
+          <AnimatePresence initial={false} mode="popLayout">
+            <motion.div
+              key={`right-${nextIndex}`}
+              className="absolute max-w-xs md:max-w-sm w-full"
+              initial={direction === 1 ? "exitLeft" : "enterLeft"}
+              animate="right"
+              exit={direction === 1 ? "enterRight" : "exitLeft"}
+              variants={cardVariants}
+              style={{ perspective: 1000 }}
+            >
+              <TestimonialCard 
+                testimonial={testimoniales[nextIndex]} 
+                onExpandClick={handleExpandClick} 
+                index={nextIndex}
+                isSmall={true}
+              />
+            </motion.div>
+          </AnimatePresence>
+        </div>
 
         {/* Controles de navegación */}
-        <div className="flex justify-center items-center gap-4 mt-8">
+        <div className="absolute bottom-0 left-0 right-0 flex justify-center items-center gap-4 mt-8 pb-4">
           <motion.button
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
@@ -262,7 +337,7 @@ const TestimonialCarousel = () => {
         </div>
         
         {/* Indicación de deslizar para móviles */}
-        <div className="text-center mt-6 text-sm text-gray-400 md:hidden">
+        <div className="absolute bottom-0 left-0 right-0 text-center mb-14 text-sm text-gray-400 md:hidden">
           <p>Desliza para ver más testimonios</p>
         </div>
       </div>

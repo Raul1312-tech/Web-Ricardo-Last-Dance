@@ -52,11 +52,17 @@ const TestimonialCard = ({
       onHoverEnd={() => setIsHovering(false)}
     >
       <TiltCard 
-        className={`w-full h-full ${isSmall ? 'min-h-[180px]' : 'min-h-[250px]'} cursor-pointer`}
-        tiltAmount={5}
+        className={`w-full h-full ${isSmall ? 'min-h-[200px]' : 'min-h-[280px]'} cursor-pointer`}
+        tiltAmount={feature ? 8 : 12} // Mayor efecto de inclinación en tarjetas laterales
         perspective={1500}
         glareOpacity={0.15}
-        backgroundClassName={`relative bg-gradient-to-br ${feature ? 'from-purple-950/40 to-black/80' : 'from-black/80 to-purple-950/30'} backdrop-blur-sm border border-purple-500/20 rounded-xl p-6 h-full flex flex-col`}
+        backgroundClassName={`relative bg-gradient-to-br ${
+          feature 
+            ? 'from-purple-950/50 to-black/90 shadow-xl shadow-purple-900/10' 
+            : 'from-black/80 to-purple-950/20'
+        } backdrop-blur-sm border ${
+          feature ? 'border-purple-500/30' : 'border-purple-500/10'
+        } rounded-xl p-6 h-full flex flex-col`}
       >
         <div 
           className="absolute inset-0 overflow-hidden rounded-xl"
@@ -74,18 +80,18 @@ const TestimonialCard = ({
         <div className="flex flex-col justify-between h-full z-10 relative">
           <div>
             <div className="flex justify-between items-center mb-5">
-              <div className={`bg-white/10 rounded-lg h-16 ${isSmall ? 'w-28' : 'w-40'} p-2 flex items-center justify-center`}>
+              <div className={`bg-white/10 rounded-lg h-14 ${isSmall ? 'w-28' : 'w-40'} p-2 flex items-center justify-center`}>
                 <Image 
                   src={testimonial.logoPlaceholder} 
                   alt={testimonial.clinica}
                   width={150}
                   height={80}
-                  className="max-h-12 w-auto object-contain"
+                  className="max-h-10 w-auto object-contain"
                 />
               </div>
               <span className={`text-sm text-purple-300 ${isSmall ? 'text-xs' : ''}`}>{testimonial.ubicacion}</span>
             </div>
-            <p className={`text-white ${feature ? 'text-xl' : isSmall ? 'text-sm' : 'text-lg'} font-medium leading-relaxed mb-6`}>
+            <p className={`text-white ${feature ? 'text-xl' : isSmall ? 'text-sm' : 'text-base'} font-medium leading-relaxed mb-6`}>
               "{testimonial.testimonioCorto}"
             </p>
           </div>
@@ -94,12 +100,13 @@ const TestimonialCard = ({
             onClick={() => onExpandClick(testimonial.id)}
             className={`self-start px-4 py-2 rounded-full text-sm bg-gradient-to-r from-purple-600 to-indigo-600 text-white font-medium mt-auto ${isSmall ? 'text-xs px-3 py-1.5' : ''}`}
             whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.98 }}
+            whileTap={{ scale: 0.95 }}
           >
             Ver caso completo
           </motion.button>
         </div>
         
+        {/* Efectos decorativos */}
         <motion.div 
           className={`absolute bottom-0 right-0 ${feature ? 'w-32 h-32' : 'w-20 h-20'} rounded-full bg-gradient-to-r from-purple-600/20 to-indigo-600/20 blur-xl`}
           animate={{
@@ -112,6 +119,30 @@ const TestimonialCard = ({
             repeatType: "reverse"
           }}
         />
+        
+        {/* Punto brillante que sigue al cursor */}
+        {isHovering && (
+          <motion.div 
+            className="absolute w-16 h-16 rounded-full pointer-events-none"
+            style={{
+              background: "radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)",
+              filter: "blur(8px)",
+              top: "50%",
+              left: "50%",
+              transform: "translate(-50%, -50%)",
+              opacity: 0.6
+            }}
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.4, 0.6, 0.4],
+            }}
+            transition={{
+              duration: 1.5,
+              repeat: Infinity,
+              repeatType: "reverse"
+            }}
+          />
+        )}
       </TiltCard>
     </motion.div>
   );

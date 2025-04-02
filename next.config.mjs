@@ -7,6 +7,21 @@ const nextConfig = {
         // your project has ESLint errors.
         ignoreDuringBuilds: true,
     },
+    images: {
+        domains: ['via.placeholder.com', 'images.unsplash.com'],
+        remotePatterns: [
+            {
+                protocol: 'https',
+                hostname: 'via.placeholder.com',
+                pathname: '**',
+            },
+            {
+                protocol: 'https',
+                hostname: 'images.unsplash.com',
+                pathname: '**',
+            },
+        ],
+    },
 };
 
 export default withSentryConfig(withBundleAnalyzer(nextConfig), {
