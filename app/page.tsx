@@ -7,7 +7,6 @@ import { FloatingNav } from "@/components/ui/FloatingNavbar";
 import HeroDental from "@/components/dentalPro/HeroDental";
 import ServiciosDentalAlt from "@/components/dentalPro/ServiciosDentalAlt";
 import MetodologiaDental from "@/components/dentalPro/MetodologiaDental";
-import ResultadosDental from "@/components/dentalPro/ResultadosDental";
 import EquipoDental from "@/components/dentalPro/EquipoDental"; 
 import TestimoniosDental from "@/components/dentalPro/TestimoniosDental";
 import ContactoDental from "@/components/dentalPro/ContactoDental";
@@ -26,7 +25,6 @@ const Home = () => {
         <div id="metodologia">
           <MetodologiaDental />
         </div>
-        <ResultadosDental />
         <div id="equipo">
           <EquipoDental />
         </div>

@@ -32,8 +32,8 @@
         /* Sección de Equipo */
         .team-section {
             position: relative;
-            min-height: 100vh;
-            padding: 100px 0;
+            min-height: auto;
+            padding: 60px 0 20px;
             overflow: hidden;
         }
 
@@ -56,7 +56,7 @@
 
         .section-title {
             text-align: center;
-            margin-bottom: 80px;
+            margin-bottom: 40px;
             font-size: 3rem;
             display: flex;
             justify-content: center;
@@ -76,15 +76,18 @@
         /* Diseño de Tarjetas */
         .card-grid {
             display: flex;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             justify-content: center;
-            gap: 30px;
+            gap: 15px;
             margin: 0 auto;
-            max-width: 1200px;
+            max-width: 1400px;
+            overflow-x: auto;
+            padding: 10px 10px 30px;
         }
 
         .card-container {
-            width: 320px;
+            width: 280px;
+            min-width: 280px;
             background-color: rgba(20, 20, 35, 0.7);
             border-radius: 12px;
             overflow: hidden;
@@ -131,9 +134,9 @@
         }
 
         .profile-icon {
-            width: 80px;
-            height: 80px;
-            margin: 25px auto 15px;
+            width: 70px;
+            height: 70px;
+            margin: 20px auto 15px;
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -178,22 +181,28 @@
         .card-container h3 {
             color: #ffffff;
             margin-bottom: 5px;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
         }
 
         .card-container .role {
             color: #8051dd;
             /* Nuevo color morado */
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             font-weight: 500;
+            font-size: 0.9rem;
         }
 
         .card-container .preview {
             color: #adadad;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            font-size: 0.85rem;
+            line-height: 1.4;
             margin-bottom: 20px;
-            min-height: 80px;
+            min-height: 70px;
+            display: -webkit-box;
+            -webkit-line-clamp: 4;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .view-profile-btn {
@@ -202,7 +211,8 @@
             background: transparent;
             color: #8051dd;
             /* Nuevo color morado */
-            padding: 8px 0;
+            padding: 6px 0;
+            font-size: 0.9rem;
             text-decoration: none;
             font-weight: 500;
             border: none;
@@ -541,33 +551,32 @@
         }
 
         /* Responsive */
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2.5rem;
-            }
-
+        @media (max-width: 1200px) {
             .card-grid {
-                justify-content: center;
+                overflow-x: auto;
+                justify-content: flex-start;
+                padding: 20px 20px;
+                gap: 20px;
             }
 
             .card-container {
-                width: 100%;
-                max-width: 320px;
+                min-width: 260px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .card-grid {
+                gap: 15px;
+                padding: 15px 15px;
             }
 
-            .modal-header {
-                flex-direction: column;
-                align-items: center;
-                text-align: center;
+            .card-container {
+                min-width: 240px;
             }
 
-            .profile-image {
-                margin-right: 0;
-                margin-bottom: 20px;
-            }
-
-            .contact-info {
-                justify-content: center;
+            .section-title {
+                font-size: 2.5rem;
+                margin-bottom: 40px;
             }
         }
     </style>
@@ -1037,6 +1046,26 @@
             });
 
             console.log('Efecto de reclinación aplicado correctamente');
+        });
+    </script>
+
+    <!-- Estilo para ajustar la altura de la sección -->
+    <script>
+        // Ajustar la altura del iframe en el componente padre
+        window.addEventListener('load', function () {
+            // Calculamos la altura real del contenido
+            const teamSection = document.querySelector('.team-section');
+            if (teamSection) {
+                const height = teamSection.getBoundingClientRect().height;
+                // Enviar un mensaje al padre con la altura del contenido
+                window.parent.postMessage({ type: 'resize', height: height }, '*');
+
+                // También enviamos un mensaje cuando cambia el tamaño de la ventana
+                window.addEventListener('resize', function () {
+                    const newHeight = teamSection.getBoundingClientRect().height;
+                    window.parent.postMessage({ type: 'resize', height: newHeight }, '*');
+                });
+            }
         });
     </script>
 </body>

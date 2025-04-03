@@ -188,7 +188,13 @@ const TestimonialCarousel = () => {
       <div 
         className="relative mx-auto px-4 h-[500px] sm:h-[420px] md:h-[450px] overflow-hidden"
         ref={carouselRef}
-        onMouseDown={handleDragStart}
+        onMouseDown={(e) => {
+          // Verificar si el clic se hizo en un botón de navegación
+          if ((e.target as HTMLElement).closest('button')) {
+            return; // No iniciar arrastre si se hizo clic en un botón
+          }
+          handleDragStart(e);
+        }}
         onMouseMove={handleDragMove}
         onMouseUp={handleDragEnd}
         onMouseLeave={handleDragEnd}
@@ -253,25 +259,25 @@ const TestimonialCarousel = () => {
         </div>
 
         {/* Flechas de navegación (a los lados) */}
-        <div className="absolute w-full flex justify-between items-center top-1/2 transform -translate-y-1/2 px-4 z-40">
+        <div className="absolute w-full flex justify-between items-center top-1/2 transform -translate-y-1/2 px-4 md:px-8 z-50 pointer-events-none">
           <button
             type="button"
-            className="p-3 rounded-full bg-black/30 backdrop-blur-sm text-white border border-white/10 shadow-lg hover:bg-purple-600/20 transition-colors"
+            className="p-3 md:p-4 rounded-full bg-black/30 backdrop-blur-sm text-white border border-white/10 shadow-lg hover:bg-purple-600/20 transition-colors pointer-events-auto hover:scale-110"
             onClick={handlePrevClick}
             aria-label="Testimonio anterior"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 19l-7-7 7-7" />
             </svg>
           </button>
           
           <button
             type="button"
-            className="p-3 rounded-full bg-black/30 backdrop-blur-sm text-white border border-white/10 shadow-lg hover:bg-purple-600/20 transition-colors"
+            className="p-3 md:p-4 rounded-full bg-black/30 backdrop-blur-sm text-white border border-white/10 shadow-lg hover:bg-purple-600/20 transition-colors pointer-events-auto hover:scale-110"
             onClick={handleNextClick}
             aria-label="Siguiente testimonio"
           >
-            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 md:h-6 md:w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
             </svg>
           </button>

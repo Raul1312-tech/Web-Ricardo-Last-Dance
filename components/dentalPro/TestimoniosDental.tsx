@@ -7,6 +7,8 @@ const styles = `
     perspective: 2000px;
     perspective-origin: 50% 50%;
     transform-style: preserve-3d;
+    position: relative;
+    z-index: 1;
   }
 
   @keyframes gradient {
