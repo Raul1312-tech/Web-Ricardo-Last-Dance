@@ -31,12 +31,12 @@ const TestimoniosDental = () => {
       <style jsx global>{styles}</style>
       
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-r from-purple-600/10 to-blue-600/10 rounded-full blur-3xl"></div>
-        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-gradient-to-r from-blue-600/10 to-purple-600/10 rounded-full blur-3xl"></div>
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-r from-black via-black to-purple-900/15 rounded-full blur-3xl opacity-50"></div>
+        <div className="absolute -bottom-32 -right-32 w-96 h-96 bg-gradient-to-r from-black via-black to-fuchsia-900/15 rounded-full blur-3xl opacity-50"></div>
       </div>
       
       <h2 className="heading text-center mb-10">
-        Lo que dicen <span className="text-purple">nuestros clientes</span>
+        Lo que dicen <span className="text-verde-chicle">nuestros clientes</span>
       </h2>
       
       <div className="carousel-perspective">

@@ -11,23 +11,29 @@ const HeroDental = () => {
       <div>
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
-          fill="#00A4BE"
+          fill="#4F46E5"
         />
         <Spotlight
           className="h-[80vh] w-[50vw] top-10 left-full"
-          fill="#00B29C"
+          fill="rgb(74, 222, 128)"
         />
-        <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill="#F59E0B" />
+        <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill="#EC4899" />
+      </div>
+
+      {/* Fondos decorativos con gradientes */}
+      <div className="absolute top-0 left-0 right-0 bottom-0 z-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-32 -left-32 w-96 h-96 bg-gradient-to-r from-black via-black to-purple-900/20 rounded-full blur-3xl opacity-60"></div>
+        <div className="absolute top-1/4 -right-32 w-96 h-96 bg-gradient-to-l from-black via-black to-fuchsia-900/20 rounded-full blur-3xl opacity-60"></div>
       </div>
 
       {/* Grid de fondo */}
       <div
-        className="h-screen w-full dark:bg-black-100 bg-white dark:bg-grid-white/[0.03] bg-grid-black-100/[0.2]
+        className="h-screen w-full bg-grid-white/[0.015]
        absolute top-0 left-0 flex items-center justify-center"
       >
         <div
-          className="absolute pointer-events-none inset-0 flex items-center justify-center dark:bg-black-100
-         bg-white [mask-image:radial-gradient(ellipse_at_center,transparent_20%,black)]"
+          className="absolute pointer-events-none inset-0 flex items-center justify-center
+         [mask-image:radial-gradient(ellipse_at_center,transparent_30%,black)]"
         />
       </div>
 

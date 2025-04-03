@@ -8,13 +8,13 @@ const MetodologiaDental = () => {
     <div className="py-20 relative">
       {/* Fondos decorativos */}
       <div className="absolute inset-0 z-0 opacity-30">
-        <div className="absolute top-10 right-10 w-64 h-64 rounded-full" style={{ background: 'radial-gradient(circle, rgba(79, 70, 229, 0.4) 0%, transparent 70%)', filter: 'blur(50px)' }} />
-        <div className="absolute bottom-20 left-20 w-80 h-80 rounded-full" style={{ background: 'radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%)', filter: 'blur(60px)' }} />
+        <div className="absolute top-10 right-10 w-96 h-96 rounded-full" style={{ background: 'radial-gradient(circle, rgba(172, 68, 171, 0.2) 0%, rgba(0, 0, 0, 0.95) 50%)', filter: 'blur(60px)' }} />
+        <div className="absolute bottom-20 left-20 w-96 h-96 rounded-full" style={{ background: 'radial-gradient(circle, rgba(146, 35, 164, 0.2) 0%, rgba(0, 0, 0, 0.95) 50%)', filter: 'blur(70px)' }} />
       </div>
       
       <div className="relative z-10">
         <h2 className="text-4xl font-bold text-center mb-4">
-          Nuestra <span className="text-purple">Metodología</span>
+          Nuestra <span className="text-verde-chicle">Metodología</span>
         </h2>
         
         <p className="text-xl text-center text-gray-300 max-w-3xl mx-auto mb-8">

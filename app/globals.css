@@ -43,9 +43,10 @@
 
     --white-20: rgba(255, 255, 255, 0.2);
 
-    --blue-100: #E0F7FF;
-    --blue: #00A4BE;
-    --purple: rgb(0, 178, 156);
+    --blue-100: #93c5fd;
+    --blue: #3b82f6;
+    --purple: rgb(139, 92, 246);
+    --verde-chicle: rgb(74, 222, 128);
   }
 
   .dark {
@@ -86,6 +87,9 @@
 
   body {
     @apply bg-background text-foreground;
+    background-color: #000000;
+    background-image: linear-gradient(140deg, #000000 0%, #000000 40%, #0a0008 55%, #1a0011 70%, #250625 85%, #3b0f41 95%, #0a0a1a 100%);
+    background-attachment: fixed;
   }
 
   button {
@@ -104,6 +108,10 @@
 
   .preserve-3d {
     transform-style: preserve-3d;
+  }
+
+  .text-verde-chicle {
+    color: var(--verde-chicle);
   }
 }
 
@@ -128,7 +136,7 @@
 }
 
 .text-gradient-primary {
-  background: linear-gradient(90deg, #00B29C 0%, #00A4BE 100%);
+  background: linear-gradient(90deg, #8B5CF6 0%, #4ADE80 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
