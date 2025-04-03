@@ -43,9 +43,9 @@
 
     --white-20: rgba(255, 255, 255, 0.2);
 
-    --blue-100: #93c5fd;
-    --blue: #3b82f6;
-    --purple: rgb(139, 92, 246);
+    --blue-100: #E0F7FF;
+    --blue: #00A4BE;
+    --purple: rgb(0, 178, 156);
   }
 
   .dark {
@@ -128,7 +128,7 @@
 }
 
 .text-gradient-primary {
-  background: linear-gradient(90deg, #8B5CF6 0%, #4ADE80 100%);
+  background: linear-gradient(90deg, #00B29C 0%, #00A4BE 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

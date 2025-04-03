@@ -11,13 +11,13 @@ const HeroDental = () => {
       <div>
         <Spotlight
           className="-top-40 -left-10 md:-left-32 md:-top-20 h-screen"
-          fill="#4F46E5"
+          fill="#00A4BE"
         />
         <Spotlight
           className="h-[80vh] w-[50vw] top-10 left-full"
-          fill="#8B5CF6"
+          fill="#00B29C"
         />
-        <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill="#EC4899" />
+        <Spotlight className="left-80 top-28 h-[80vh] w-[50vw]" fill="#F59E0B" />
       </div>
 
       {/* Grid de fondo */}
